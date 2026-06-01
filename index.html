@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0f1e">
+<title>CareerLaunch India</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b18;--sur:#0d1526;--sur2:#131d33;--bdr:#1e2d4a;--ac:#00e5ff;--ac2:#7b61ff;--ac3:#ff6b6b;--gold:#ffd166;--grn:#06d6a0;--txt:#e8edf8;--mut:#6b7fa3;--mn:'Space Mono',monospace;--bd:'Plus Jakarta Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--bd);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(0,229,255,.04),transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(123,97,255,.05),transparent 60%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(6,11,24,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:54px}
+.logo{font-family:var(--mn);font-size:.88rem;color:var(--ac);letter-spacing:2px;text-transform:uppercase}.logo span{color:var(--ac2)}
+.hdr-r{display:flex;align-items:center;gap:9px}
+.hdr-prof{font-family:var(--mn);font-size:.56rem;color:var(--gold);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.25);padding:3px 8px;border-radius:20px;display:none;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hdr-live{font-family:var(--mn);font-size:.56rem;color:var(--grn);display:flex;align-items:center;gap:4px}
+.pdot{width:5px;height:5px;border-radius:50%;background:var(--grn);animation:pulse 2s infinite}
+.key-btn{font-family:var(--mn);font-size:.56rem;padding:3px 9px;border-radius:20px;border:1px solid rgba(255,209,102,.35);background:rgba(255,209,102,.08);color:var(--gold);cursor:pointer;white-space:nowrap}
+.key-btn.ok{border-color:rgba(6,214,160,.35);background:rgba(6,214,160,.08);color:var(--grn)}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;display:none;align-items:flex-end;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{background:var(--sur);border:1px solid var(--bdr);border-radius:16px 16px 0 0;padding:20px 18px 36px;width:100%;max-width:480px;animation:slideUp .3s ease both}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal h3{font-size:.95rem;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:.74rem;color:var(--mut);line-height:1.6;margin-bottom:14px}
+.modal input[type=password]{width:100%;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;color:var(--txt);font-family:var(--mn);font-size:.72rem;outline:none;margin-bottom:10px;transition:border-color .2s}
+.modal input[type=password]:focus{border-color:var(--gold)}
+.modal-btns{display:flex;gap:8px}
+.mbtn{flex:1;padding:10px;border-radius:8px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:var(--bd);border:none}
+.mbtn.save{background:linear-gradient(135deg,var(--gold),#f5a623);color:#000}
+.mbtn.cancel{background:var(--sur2);color:var(--mut);border:1px solid var(--bdr)}
+.iframe-warn{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.25);border-radius:10px;padding:12px 14px;margin-bottom:14px;display:none}
+.iframe-warn p{font-size:.74rem;color:var(--ac3);margin:0;line-height:1.65}
+.api-free-note{background:rgba(6,214,160,.07);border:1px solid rgba(6,214,160,.2);border-radius:10px;padding:10px 13px;margin-bottom:14px}
+.api-free-note p{font-size:.72rem;color:var(--grn);margin:0;line-height:1.6}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.container{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:18px 13px 84px}
+/* HERO */
+.hero{text-align:center;padding:22px 0 18px;animation:fadeUp .5s ease both}
+.htag{display:inline-block;font-family:var(--mn);font-size:.58rem;letter-spacing:3px;color:var(--ac);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);padding:4px 12px;border-radius:20px;margin-bottom:11px;text-transform:uppercase}
+.hero h1{font-size:clamp(1.55rem,5vw,2.6rem);font-weight:800;line-height:1.15;margin-bottom:8px;background:linear-gradient(135deg,#fff 30%,var(--ac) 70%,var(--ac2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--mut);font-size:.85rem;max-width:480px;margin:0 auto;line-height:1.7}
+@keyframes fadeUp{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.slbl{font-family:var(--mn);font-size:.58rem;letter-spacing:2px;color:var(--ac);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.slbl::after{content:'';flex:1;height:1px;background:var(--bdr)}
+/* DEGREE */
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:7px;margin-bottom:16px;animation:fadeUp .5s .06s ease both}
+.dbtn{background:var(--sur);border:1px solid var(--bdr);border-radius:9px;padding:9px 5px;text-align:center;cursor:pointer;transition:all .2s;font-family:var(--bd);color:var(--mut);font-size:.74rem;font-weight:600}
+.dbtn .ic{font-size:1.2rem;display:block;margin-bottom:3px}
+.dbtn:hover{border-color:var(--ac);color:var(--ac);background:rgba(0,229,255,.05)}
+.dbtn.active{border-color:var(--ac);background:rgba(0,229,255,.1);color:var(--ac);box-shadow:0 0 14px rgba(0,229,255,.1)}
+/* SPEC */
+.specsec{display:none;animation:fadeUp .4s ease both;margin-bottom:14px}
+.specrow{display:flex;gap:6px;flex-wrap:wrap}
+.spchip{padding:5px 11px;border-radius:20px;font-size:.7rem;font-weight:600;cursor:pointer;border:1px solid var(--bdr);background:var(--sur);color:var(--mut);transition:all .2s}
+.spchip:hover{border-color:var(--ac2);color:var(--ac2)}.spchip.active{border-color:var(--ac2);background:rgba(123,97,255,.15);color:var(--ac2)}
+/* PROFILE CARD */
+.profcard{display:none;background:linear-gradient(135deg,rgba(0,229,255,.05),rgba(123,97,255,.05));border:1px solid rgba(0,229,255,.18);border-radius:12px;padding:13px 15px;margin-bottom:16px;animation:fadeUp .4s ease both}
+.profcard.show{display:block}
+.pc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.pc-title{font-weight:700;font-size:.84rem}
+.pc-badge{font-family:var(--mn);font-size:.54rem;letter-spacing:1px;padding:2px 8px;border-radius:20px;background:rgba(0,229,255,.1);color:var(--ac);border:1px solid rgba(0,229,255,.2);text-transform:uppercase}
+.pc-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+.pctag{font-size:.68rem;padding:2px 8px;border-radius:5px;background:var(--sur2);border:1px solid var(--bdr);color:var(--mut)}
+.pc-acts{display:flex;gap:6px;flex-wrap:wrap}
+.pcbtn{flex:1;min-width:120px;padding:7px 11px;border-radius:7px;border:1px solid var(--bdr);background:var(--sur2);color:var(--txt);font-size:.7rem;font-weight:600;cursor:pointer;font-family:var(--bd);transition:all .2s;display:flex;align-items:center;justify-content:center;gap:4px}
+.pcbtn:hover{border-color:var(--ac);color:var(--ac)}.pcbtn.primary{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#000;border:none}
+/* CHAT */
+.chatbox{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:12px;margin-bottom:16px;animation:fadeUp .5s .1s ease both}
+.chatrow{display:flex;gap:8px;align-items:flex-end}
+.cinput{flex:1;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:10px 11px;color:var(--txt);font-family:var(--bd);font-size:.8rem;resize:none;height:68px;outline:none;transition:border-color .2s;line-height:1.5}
+.cinput:focus{border-color:var(--ac)}.cinput::placeholder{color:var(--mut)}
+.sbtn{background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:8px;color:#000;font-weight:700;font-size:.76rem;cursor:pointer;height:68px;width:68px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:opacity .2s,transform .1s;font-family:var(--bd);flex-shrink:0}
+.sbtn:hover{opacity:.9;transform:scale(1.02)}.sbtn:disabled{opacity:.4;cursor:not-allowed}.sbtn svg{width:16px;height:16px}
+.qqrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.qq{padding:4px 10px;border-radius:20px;font-size:.67rem;cursor:pointer;border:1px solid rgba(0,229,255,.2);background:transparent;color:var(--ac);transition:all .2s;font-family:var(--bd)}
+.qq:hover{background:rgba(0,229,255,.08)}
+/* LOADING */
+.loading{display:flex;align-items:center;gap:9px;padding:14px;color:var(--mut);font-size:.78rem}
+.dots{display:flex;gap:4px}.dots span{width:5px;height:5px;border-radius:50%;background:var(--ac);animation:bounce 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
+/* CARDS */
+.card{background:var(--sur);border:1px solid var(--bdr);border-radius:12px;padding:15px;margin-bottom:11px;transition:border-color .2s}
+.card:hover{border-color:rgba(0,229,255,.13)}
+.chdr{display:flex;align-items:center;gap:8px;margin-bottom:11px}
+.cico{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.cico.t1{background:rgba(0,229,255,.1)}.cico.t2{background:rgba(123,97,255,.1)}.cico.ins{background:rgba(6,214,160,.1)}.cico.co{background:rgba(255,209,102,.1)}
+.ctitle{font-weight:700;font-size:.83rem}.csub{font-size:.66rem;color:var(--mut);margin-top:1px}
+/* AI RESPONSE */
+.air{font-size:.82rem;line-height:1.75;color:var(--txt)}
+.air h3{color:var(--ac);font-size:.83rem;margin:11px 0 6px;font-family:var(--mn)}
+.air h4{color:var(--gold);font-size:.77rem;margin:8px 0 4px;font-weight:700}
+.air ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:4px}
+.air ul li{padding:5px 9px;background:var(--sur2);border-radius:6px;border-left:2px solid var(--ac2);font-size:.77rem}
+.air ul li::before{content:'> ';color:var(--ac);font-family:var(--mn)}
+.air strong{color:var(--gold)}.air em{color:var(--grn);font-style:normal;font-weight:600}.air p{margin-bottom:5px}
+/* TAGS */
+.stag{padding:3px 8px;border-radius:5px;font-size:.64rem;font-weight:600;background:var(--sur2);border:1px solid var(--bdr);color:var(--mut);display:inline-block;margin:2px}
+.stag.hot{border-color:var(--ac3);color:var(--ac3);background:rgba(255,107,107,.07)}
+.stag.new{border-color:var(--grn);color:var(--grn);background:rgba(6,214,160,.07)}
+/* ROADMAP */
+.rmstep{display:flex;gap:10px;margin-bottom:11px;position:relative}
+.rmstep::before{content:'';position:absolute;left:15px;top:31px;width:2px;height:calc(100% + 3px);background:linear-gradient(to bottom,var(--bdr),transparent)}
+.rmstep:last-child::before{display:none}
+.rmnum{width:30px;height:30px;border-radius:50%;border:2px solid var(--ac);display:flex;align-items:center;justify-content:center;font-family:var(--mn);font-size:.7rem;color:var(--ac);flex-shrink:0;background:var(--bg);z-index:1}
+.rmbody{flex:1;background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:9px 11px}
+.rmtitle{font-weight:700;font-size:.79rem;margin-bottom:2px}.rmdesc{font-size:.72rem;color:var(--mut);line-height:1.55}
+.rmdur{font-family:var(--mn);font-size:.56rem;color:var(--gold);margin-top:3px}
+/* SKILLS */
+.skl{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--sur2);border:1px solid var(--bdr);border-radius:7px;cursor:pointer;transition:all .2s;user-select:none;margin-bottom:6px}
+.skl:hover{border-color:var(--ac)}.skl.done{border-color:var(--grn);background:rgba(6,214,160,.05)}
+.skl .cb{width:18px;height:18px;border-radius:4px;border:2px solid var(--bdr);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s}
+.skl.done .cb{border-color:var(--grn);background:var(--grn);color:#000}
+.skl .ski{flex:1}.skl .skn{font-weight:600;font-size:.78rem}.skl.done .skn{text-decoration:line-through;opacity:.6}
+.skl .skm{font-size:.65rem;color:var(--mut)}
+.spbar{height:5px;background:var(--sur2);border-radius:3px;overflow:hidden;margin:4px 0 9px}
+.spfill{height:100%;background:linear-gradient(90deg,var(--ac),var(--grn));border-radius:3px;transition:width .5s}
+.splbl{font-family:var(--mn);font-size:.58rem;color:var(--mut);display:flex;justify-content:space-between}
+/* COMPANY GRID */
+.cogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:7px}
+.cocard{background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:10px;transition:all .2s}
+.cocard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.coname{font-weight:700;font-size:.78rem;margin-bottom:2px}.corole{font-size:.66rem;color:var(--ac);margin-bottom:2px}
+.coinfo{font-size:.64rem;color:var(--mut);line-height:1.4}
+.cobadge{display:inline-block;font-size:.56rem;padding:1px 6px;border-radius:10px;margin-top:4px;font-weight:600;font-family:var(--mn)}
+.cobadge.mass{background:rgba(0,229,255,.1);color:var(--ac);border:1px solid rgba(0,229,255,.2)}
+.cobadge.startup{background:rgba(255,209,102,.1);color:var(--gold);border:1px solid rgba(255,209,102,.2)}
+.cobadge.product{background:rgba(123,97,255,.1);color:var(--ac2);border:1px solid rgba(123,97,255,.2)}
+/* TREND TICKER */
+.tbar{background:var(--sur);border:1px solid var(--bdr);border-radius:8px;padding:7px 12px;margin-bottom:14px;display:flex;align-items:center;gap:8px;overflow:hidden}
+.tlbl{font-family:var(--mn);font-size:.54rem;color:var(--gold);white-space:nowrap;letter-spacing:1px;text-transform:uppercase}
+.tscroll{overflow:hidden;flex:1}
+.tinner{display:flex;gap:18px;animation:sx 35s linear infinite;white-space:nowrap}
+.tinner:hover{animation-play-state:paused}
+@keyframes sx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ti{font-size:.67rem;color:var(--mut);display:inline-flex;align-items:center;gap:3px}
+.ti .up{color:var(--grn)}.ti .ht{color:var(--ac3)}
+/* JOB LINKS */
+.jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:6px;margin-bottom:11px}
+.jlnk{background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:9px 7px;text-align:center;text-decoration:none;color:var(--txt);font-size:.72rem;font-weight:600;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:4px}
+.jlnk:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px)}
+.jlnk .ji{font-size:1.2rem}.jlnk .js{font-size:.58rem;color:var(--mut)}
+/* NEWS */
+.nitem{background:var(--sur2);border:1px solid var(--bdr);border-radius:7px;padding:9px 11px;margin-bottom:7px;cursor:pointer;transition:border-color .2s}
+.nitem:hover{border-color:var(--ac)}
+.ntitle{font-size:.78rem;font-weight:600;line-height:1.4;margin-bottom:3px}
+.nmeta{font-size:.63rem;color:var(--mut);display:flex;gap:8px;align-items:center}
+.nsrc{color:var(--ac);font-family:var(--mn)}
+.nbadg{padding:1px 6px;border-radius:10px;font-size:.56rem;font-family:var(--mn);font-weight:700}
+.nbadg.jobs{background:rgba(6,214,160,.1);color:var(--grn);border:1px solid rgba(6,214,160,.2)}
+.nbadg.tech{background:rgba(0,229,255,.1);color:var(--ac);border:1px solid rgba(0,229,255,.2)}
+.nbadg.edu{background:rgba(255,209,102,.1);color:var(--gold);border:1px solid rgba(255,209,102,.2)}
+.nbadg.biz{background:rgba(123,97,255,.1);color:var(--ac2);border:1px solid rgba(123,97,255,.2)}
+/* STREAM DETAIL */
+.sstat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+.sstat{background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:11px 8px;text-align:center}
+.sstat-v{font-family:var(--mn);font-size:.95rem;font-weight:700}
+.sstat-l{font-size:.63rem;color:var(--mut);margin-top:2px}
+.cpflow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:9px 0 13px}
+.cpnode{background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;padding:5px 10px;font-size:.7rem;font-weight:600}
+.cpnode.fresher{border-color:var(--ac);color:var(--ac)}.cpnode.mid{border-color:var(--gold);color:var(--gold)}.cpnode.senior{border-color:var(--grn);color:var(--grn)}
+.cparr{color:var(--mut);font-size:.78rem}
+.examrow{display:flex;flex-direction:column;gap:5px}
+.examitem{display:flex;align-items:center;gap:9px;background:var(--sur2);border:1px solid var(--bdr);border-radius:7px;padding:8px 11px}
+.exname{font-weight:700;font-size:.78rem;flex:1}.exdet{font-size:.66rem;color:var(--mut)}
+.exbadge{font-family:var(--mn);font-size:.56rem;padding:2px 7px;border-radius:10px}
+/* SALARY */
+.salgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px}
+.salcard{background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;padding:10px;text-align:center}
+.salamt{font-family:var(--mn);font-size:.92rem;font-weight:700;color:var(--gold)}
+.sallbl{font-size:.65rem;color:var(--mut);margin-top:2px}
+/* BOTTOM NAV */
+nav.botnav{position:fixed;bottom:0;left:0;right:0;background:rgba(6,11,24,.96);backdrop-filter:blur(20px);border-top:1px solid var(--bdr);display:flex;z-index:100}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px 0 5px;cursor:pointer;transition:color .2s;color:var(--mut);font-size:.54rem;font-weight:600;gap:2px;letter-spacing:.5px;text-transform:uppercase;border:none;background:none;font-family:var(--bd);position:relative}
+.ni svg{width:17px;height:17px}.ni.active{color:var(--ac)}.ni:hover{color:var(--txt)}
+.nbdg{position:absolute;top:3px;right:calc(50% - 15px);background:var(--ac3);color:#fff;font-size:.46rem;padding:1px 4px;border-radius:8px;font-family:var(--mn);display:none}
+.nbdg.show{display:block}
+.tab{display:none}.tab.active{display:block}
+.empty{text-align:center;padding:28px 18px;color:var(--mut)}
+.empty svg{width:38px;height:38px;margin:0 auto 11px;opacity:.22;display:block}
+.empty p{font-size:.78rem;line-height:1.6}
+.divider{height:1px;background:var(--bdr);margin:14px 0}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:3px}
+@media(max-width:480px){.dgrid{grid-template-columns:repeat(3,1fr)}.salgrid{grid-template-columns:1fr}.cogrid{grid-template-columns:1fr 1fr}.sstat-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Career<span>Launch</span>.in</div>
+  <div class="hdr-r">
+    <div class="hdr-prof" id="hdrProf"></div>
+    <button class="key-btn" id="keyBtn" onclick="openModal()">&#128273; API Key</button>
+    <div class="hdr-live"><div class="pdot"></div>LIVE</div>
+  </div>
+</header>
+
+<!-- API KEY MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal">
+    <h3>&#128273; Anthropic API Key</h3>
+    <div class="modal-sub">Required for AI features (Guide, Roadmap, Skills, Companies).<br>Trends &amp; Streams tabs are <strong style="color:var(--grn)">100% free — no key needed.</strong></div>
+    <div class="iframe-warn" id="iframeWarn">
+      <p>&#9888;&#65039; <strong>Running inside a preview iframe.</strong><br>
+      AI API calls are blocked here. To use AI features, <strong>download the file</strong> and open it directly in your browser (Chrome/Safari), or deploy to GitHub Pages / Vercel.</p>
+    </div>
+    <div class="api-free-note">
+      <p>&#9989; <strong>Free right now:</strong> Trends tab (live news, job portals, Google Trends) and Streams tab (8 stream career guides) work without any key.</p>
+    </div>
+    <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-xxxx...  (from console.anthropic.com)" />
+    <div class="modal-btns">
+      <button class="mbtn save" onclick="saveKey()">&#128274; Save Key</button>
+      <button class="mbtn cancel" onclick="closeModal()">Cancel</button>
+    </div>
+    <div style="margin-top:10px;font-size:.65rem;color:var(--mut)">Key is stored only in your browser localStorage. Never sent anywhere except Anthropic.</div>
+  </div>
+</div>
+<div class="container">
+
+<!-- GUIDE TAB -->
+<div class="tab active" id="tab-guide">
+  <div class="hero">
+    <div class="htag">&#127470;&#127475; For Indian Graduates &middot; Career Intelligence</div>
+    <h1>Your Career Path Starts Here</h1>
+    <p>Select your degree &amp; specialization &mdash; get live job trends, stream intelligence, AI-powered roadmap, skill tracker &amp; hiring companies.</p>
+  </div>
+  <!-- FREE vs AI notice -->
+  <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+    <div style="flex:1;min-width:140px;background:rgba(6,214,160,.07);border:1px solid rgba(6,214,160,.2);border-radius:9px;padding:9px 12px">
+      <div style="font-size:.68rem;font-weight:700;color:var(--grn);margin-bottom:3px">&#9989; 100% FREE</div>
+      <div style="font-size:.66rem;color:var(--mut);line-height:1.5">Trends tab &bull; Streams tab &bull; Job portal links &bull; Salary benchmarks &bull; Google Trends</div>
+    </div>
+    <div style="flex:1;min-width:140px;background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.2);border-radius:9px;padding:9px 12px">
+      <div style="font-size:.68rem;font-weight:700;color:var(--gold);margin-bottom:3px">&#128273; Needs API Key</div>
+      <div style="font-size:.66rem;color:var(--mut);line-height:1.5">AI chat &bull; Career plan &bull; Roadmap &bull; Skill checklist &bull; Company list</div>
+    </div>
+  </div>
+  <div class="tbar">
+    <div class="tlbl">&#128293; HOT</div>
+    <div class="tscroll"><div class="tinner">
+      <span class="ti"><span class="up">&#9650;</span>AI/ML Engineer</span><span class="ti"><span class="ht">&#9679;</span>Data Analyst</span><span class="ti"><span class="up">&#9650;</span>Full Stack Dev</span><span class="ti"><span class="ht">&#9679;</span>Digital Mktg</span><span class="ti"><span class="up">&#9650;</span>Cloud Engineer</span><span class="ti"><span class="ht">&#9679;</span>Cybersecurity</span><span class="ti"><span class="up">&#9650;</span>Business Analyst</span><span class="ti"><span class="ht">&#9679;</span>UI/UX Designer</span><span class="ti"><span class="up">&#9650;</span>Product Manager</span><span class="ti"><span class="ht">&#9679;</span>DevOps Engineer</span><span class="ti"><span class="up">&#9650;</span>Prompt Engineer</span><span class="ti"><span class="ht">&#9679;</span>SAP Consultant</span>
+      <span class="ti"><span class="up">&#9650;</span>AI/ML Engineer</span><span class="ti"><span class="ht">&#9679;</span>Data Analyst</span><span class="ti"><span class="up">&#9650;</span>Full Stack Dev</span><span class="ti"><span class="ht">&#9679;</span>Digital Mktg</span><span class="ti"><span class="up">&#9650;</span>Cloud Engineer</span><span class="ti"><span class="ht">&#9679;</span>Cybersecurity</span>
+    </div></div>
+  </div>
+  <div class="slbl">Step 1 &mdash; Select Your Degree</div>
+  <div class="dgrid" id="dgrid">
+    <button class="dbtn" data-d="BTech/BE"><span class="ic">&#9881;&#65039;</span>BTech/BE</button>
+    <button class="dbtn" data-d="MCA"><span class="ic">&#128187;</span>MCA</button>
+    <button class="dbtn" data-d="BCom"><span class="ic">&#128202;</span>BCom</button>
+    <button class="dbtn" data-d="BA"><span class="ic">&#128218;</span>BA</button>
+    <button class="dbtn" data-d="BSc"><span class="ic">&#128300;</span>BSc</button>
+    <button class="dbtn" data-d="BBA/MBA"><span class="ic">&#127970;</span>BBA/MBA</button>
+    <button class="dbtn" data-d="BCA"><span class="ic">&#128421;&#65039;</span>BCA</button>
+    <button class="dbtn" data-d="Diploma"><span class="ic">&#127891;</span>Diploma</button>
+    <button class="dbtn" data-d="Other"><span class="ic">&#127758;</span>Other</button>
+  </div>
+  <div class="specsec" id="specsec">
+    <div class="slbl">Step 2 &mdash; Specialization</div>
+    <div class="specrow" id="specrow"></div>
+  </div>
+  <div class="profcard" id="profcard">
+    <div class="pc-top"><div class="pc-title" id="pctitle">Your Career Profile</div><div class="pc-badge">PERSONALIZED</div></div>
+    <div class="pc-meta" id="pcmeta"></div>
+    <div class="pc-acts">
+      <button class="pcbtn primary" onclick="autoGen()">&#9889; Generate Career Plan <span style="font-size:.6rem;opacity:.8">(AI)</span></button>
+      <button class="pcbtn" onclick="qa('What are top 5 jobs for '+sd+' '+ss+' fresher in India right now?')">&#127919; Top Job Roles <span style="font-size:.6rem;opacity:.7">(AI)</span></button>
+      <button class="pcbtn" style="border-color:var(--grn);color:var(--grn)" onclick="goTab('streams')">&#128218; Stream Guide <span style="font-size:.6rem">(FREE)</span></button>
+      <button class="pcbtn" style="border-color:var(--grn);color:var(--grn)" onclick="goTab('trends')">&#128202; Job Trends <span style="font-size:.6rem">(FREE)</span></button>
+    </div>
+  </div>
+  <div class="slbl">Step 3 &mdash; Ask Anything</div>
+  <div class="chatbox">
+    <div class="chatrow">
+      <textarea class="cinput" id="cinput" placeholder="Select your degree above, then ask anything about your career in India..."></textarea>
+      <button class="sbtn" id="sbtn" onclick="sendQ()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>ASK
+      </button>
+    </div>
+    <div class="qqrow">
+      <button class="qq" onclick="qa('Top 5 fresher jobs I can apply for right now')">Top 5 Jobs</button>
+      <button class="qq" onclick="qa('Which skills are most in demand this year?')">Hot Skills</button>
+      <button class="qq" onclick="qa('Fresher salary range in my field in India')">Salary</button>
+      <button class="qq" onclick="qa('Best free certifications to boost my career')">Certifications</button>
+      <button class="qq" onclick="qa('How to get first job with zero experience in India')">First Job Tips</button>
+      <button class="qq" onclick="qa('Government job options for my degree')">Govt Jobs</button>
+    </div>
+  </div>
+  <div id="respArea"></div>
+</div>
+
+<!-- TRENDS TAB -->
+<div class="tab" id="tab-trends">
+  <div style="padding:5px 0 14px">
+    <div class="htag" style="display:inline-block;margin-bottom:9px">&#128202; Live Employment Trends</div>
+    <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:4px">Daily Job Market Pulse</h2>
+    <p style="font-size:.76rem;color:var(--mut)">Live news from job boards &amp; industry sources + Google Trends links. No API key required for this tab.</p>
+  </div>
+  <div class="slbl" style="margin-top:12px">&#128279; Top Job Portals &mdash; Apply Now</div>
+  <div class="jgrid">
+    <a class="jlnk" href="https://www.naukri.com/jobs-in-india" target="_blank"><span class="ji">&#128188;</span>Naukri.com<span class="js">India #1</span></a>
+    <a class="jlnk" href="https://www.linkedin.com/jobs/search/?location=India&f_E=1" target="_blank"><span class="ji">&#128309;</span>LinkedIn Jobs<span class="js">Freshers</span></a>
+    <a class="jlnk" href="https://internshala.com/jobs" target="_blank"><span class="ji">&#127891;</span>Internshala<span class="js">Entry Level</span></a>
+    <a class="jlnk" href="https://www.shine.com/job-search/fresher-jobs" target="_blank"><span class="ji">&#10024;</span>Shine.com<span class="js">Freshers</span></a>
+    <a class="jlnk" href="https://www.freshersworld.com" target="_blank"><span class="ji">&#127758;</span>FreshersWorld<span class="js">Campus</span></a>
+    <a class="jlnk" href="https://www.indeed.co.in/Fresher-jobs" target="_blank"><span class="ji">&#128269;</span>Indeed India<span class="js">All Types</span></a>
+    <a class="jlnk" href="https://cutshort.io" target="_blank"><span class="ji">&#9889;</span>CutShort<span class="js">Startups</span></a>
+    <a class="jlnk" href="https://instahyre.com" target="_blank"><span class="ji">&#127775;</span>Instahyre<span class="js">Tech Roles</span></a>
+  </div>
+  <div class="slbl">&#127970; Government Job Portals</div>
+  <div class="jgrid">
+    <a class="jlnk" href="https://www.ncs.gov.in" target="_blank"><span class="ji">&#127470;&#127475;</span>NCS Portal<span class="js">Official Govt</span></a>
+    <a class="jlnk" href="https://sarkariresult.com" target="_blank"><span class="ji">&#128203;</span>SarkariResult<span class="js">Notifications</span></a>
+    <a class="jlnk" href="https://www.ssc.nic.in" target="_blank"><span class="ji">&#128221;</span>SSC India<span class="js">Central Govt</span></a>
+    <a class="jlnk" href="https://www.upsc.gov.in" target="_blank"><span class="ji">&#127942;</span>UPSC<span class="js">Civil Services</span></a>
+    <a class="jlnk" href="https://ibps.in" target="_blank"><span class="ji">&#127968;</span>IBPS<span class="js">Banking</span></a>
+    <a class="jlnk" href="https://www.rrbcdg.gov.in" target="_blank"><span class="ji">&#128642;</span>Railway RRB<span class="js">Railways</span></a>
+    <a class="jlnk" href="https://internship.aicte-india.org" target="_blank"><span class="ji">&#127979;</span>AICTE Intern<span class="js">Paid Intern</span></a>
+    <a class="jlnk" href="https://www.rojgarsamachar.gov.in" target="_blank"><span class="ji">&#128240;</span>Rojgar Samachar<span class="js">Weekly</span></a>
+  </div>
+  <div class="slbl">&#128240; Live Employment News</div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px" id="newsBtns">
+    <button class="qq" id="nb-jobs" onclick="loadNews('jobs')">&#128188; Jobs</button>
+    <button class="qq" id="nb-tech" onclick="loadNews('tech')">&#128187; Tech Hiring</button>
+    <button class="qq" id="nb-startup" onclick="loadNews('startup')">&#128640; Startups</button>
+    <button class="qq" id="nb-govt" onclick="loadNews('govt')">&#127970; Govt Jobs</button>
+    <button class="qq" id="nb-edu" onclick="loadNews('edu')">&#127891; Education</button>
+  </div>
+  <div id="newsFeed"><div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading live news...</div></div>
+  <div class="slbl" style="margin-top:14px">&#128293; Google Trends &mdash; Job Searches India (Live)</div>
+  <div class="card" style="padding:14px">
+    <p style="font-size:.72rem;color:var(--mut);margin-bottom:10px">Click any topic to view real-time search trends on Google Trends India:</p>
+    <div style="display:flex;flex-wrap:wrap;gap:7px">
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=software+developer+jobs" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#128187; Software Jobs</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=data+analyst+jobs+india" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#128202; Data Analyst</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=fresher+jobs+india+2025" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#127891; Fresher Jobs</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=government+jobs+india" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#127970; Govt Jobs</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=AI+ML+engineer+jobs+india" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#129504; AI/ML Jobs</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=digital+marketing+jobs+india" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#128293; Digital Mktg</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=cloud+computing+jobs+india" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#9925; Cloud Jobs</a>
+      <a href="https://trends.google.com/trends/explore?geo=IN&q=MBA+jobs+india+salary" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#127970; MBA Jobs</a>
+    </div>
+  </div>
+  <div class="slbl" style="margin-top:6px">&#128202; India Hiring Activity by Sector &mdash; 2025</div>
+  <div class="card"><div id="hiringChart"></div></div>
+</div>
+
+<!-- STREAMS TAB -->
+<div class="tab" id="tab-streams">
+  <div style="padding:5px 0 12px">
+    <div class="htag" style="display:inline-block;margin-bottom:9px">&#128218; Stream Intelligence</div>
+    <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:4px">Complete Stream Guide</h2>
+    <p style="font-size:.76rem;color:var(--mut);margin-bottom:12px">Deep-dive into every stream &mdash; career paths, exams, salary, companies, pros &amp; cons. No API key required for this tab.</p>
+  </div>
+  <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+    <button class="qq" onclick="showStream('BTech/BE')">&#9881;&#65039; BTech/BE</button>
+    <button class="qq" onclick="showStream('MCA')">&#128187; MCA</button>
+    <button class="qq" onclick="showStream('BCom')">&#128202; BCom</button>
+    <button class="qq" onclick="showStream('BA')">&#128218; BA</button>
+    <button class="qq" onclick="showStream('BSc')">&#128300; BSc</button>
+    <button class="qq" onclick="showStream('BBA/MBA')">&#127970; BBA/MBA</button>
+    <button class="qq" onclick="showStream('BCA')">&#128421;&#65039; BCA</button>
+    <button class="qq" onclick="showStream('Diploma')">&#127891; Diploma</button>
+  </div>
+  <div id="streamDetail">
+    <div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      <p>Select a stream above to see the complete career guide &mdash; career paths, exams, companies, salary &amp; more.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP TAB -->
+<div class="tab" id="tab-roadmap">
+  <div style="padding:5px 0 12px">
+    <div class="htag" style="display:inline-block;margin-bottom:9px">&#128205; Personalized Roadmap</div>
+    <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:4px" id="rmTitle">6-Month Career Plan</h2>
+    <p style="font-size:.76rem;color:var(--mut);margin-bottom:12px" id="rmSub">Select degree &amp; specialization in Guide tab to auto-generate your personalized plan.</p>
+  </div>
+  <div id="rmContent">
+    <div class="rmstep"><div class="rmnum">1</div><div class="rmbody"><div class="rmtitle">Self Assessment &amp; Goal Setting</div><div class="rmdesc">Identify strengths, interests, and target role. Research companies hiring freshers.</div><div class="rmdur">&#9201; Week 1-2</div></div></div>
+    <div class="rmstep"><div class="rmnum">2</div><div class="rmbody"><div class="rmtitle">Skill Gap Analysis</div><div class="rmdesc">Compare your skills with JD requirements. List top 3-5 skills to build urgently.</div><div class="rmdur">&#9201; Week 2-3</div></div></div>
+    <div class="rmstep"><div class="rmnum">3</div><div class="rmbody"><div class="rmtitle">Learn &amp; Certify</div><div class="rmdesc">Complete 1-2 certifications on NPTEL, Coursera, Google Career Certificates.</div><div class="rmdur">&#9201; Month 1-3</div></div></div>
+    <div class="rmstep"><div class="rmnum">4</div><div class="rmbody"><div class="rmtitle">Build Portfolio / Projects</div><div class="rmdesc">Create 2-3 real projects. Host on GitHub, Behance, or personal site.</div><div class="rmdur">&#9201; Month 2-4</div></div></div>
+    <div class="rmstep"><div class="rmnum">5</div><div class="rmbody"><div class="rmtitle">Apply &amp; Network</div><div class="rmdesc">Apply on Naukri, LinkedIn, Internshala. Message alumni. Attend job fairs.</div><div class="rmdur">&#9201; Month 3-5</div></div></div>
+    <div class="rmstep"><div class="rmnum">6</div><div class="rmbody"><div class="rmtitle">Interview Prep &amp; Land the Job</div><div class="rmdesc">Practice HR + technical rounds. Use GFG, InterviewBit, PrepInsta. Negotiate.</div><div class="rmdur">&#9201; Month 5-6</div></div></div>
+  </div>
+</div>
+
+<!-- SKILLS TAB -->
+<div class="tab" id="tab-skills">
+  <div style="padding:5px 0 12px">
+    <div class="htag" style="display:inline-block;margin-bottom:9px">&#9989; Skill Tracker</div>
+    <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:4px">My Skill Checklist</h2>
+    <p style="font-size:.76rem;color:var(--mut);margin-bottom:12px">Track skills as you learn them. Progress saved locally on your device. Free, no login.</p>
+  </div>
+  <div id="skillsContent">
+    <div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      <p>Select degree &amp; specialization in Guide tab, then tap <strong>Generate Full Career Plan</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- COMPANIES TAB -->
+<div class="tab" id="tab-companies">
+  <div style="padding:5px 0 12px">
+    <div class="htag" style="display:inline-block;margin-bottom:9px">&#127970; Who's Hiring</div>
+    <h2 style="font-size:1.15rem;font-weight:800;margin-bottom:4px" id="coTitle">Hiring Companies</h2>
+    <p style="font-size:.76rem;color:var(--mut);margin-bottom:12px" id="coSub">Select your stream in Guide tab to see companies actively hiring freshers.</p>
+  </div>
+  <div id="coContent">
+    <div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      <p>Your personalized hiring company list will appear here after selecting your stream.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="slbl">Fresher Salary Benchmarks 2025</div>
+  <div class="salgrid">
+    <div class="salcard"><div class="salamt">&#8377;3-6L</div><div class="sallbl">Software Developer</div></div>
+    <div class="salcard"><div class="salamt">&#8377;4-8L</div><div class="sallbl">Data Analyst</div></div>
+    <div class="salcard"><div class="salamt">&#8377;3-5L</div><div class="sallbl">Digital Marketing</div></div>
+    <div class="salcard"><div class="salamt">&#8377;3-6L</div><div class="sallbl">Business Analyst</div></div>
+    <div class="salcard"><div class="salamt">&#8377;5-10L</div><div class="sallbl">AI/ML Engineer</div></div>
+    <div class="salcard"><div class="salamt">&#8377;2.5-4L</div><div class="sallbl">Content Writer</div></div>
+    <div class="salcard"><div class="salamt">&#8377;3-5L</div><div class="sallbl">Finance Analyst</div></div>
+    <div class="salcard"><div class="salamt">&#8377;4-7L</div><div class="sallbl">Cloud Engineer</div></div>
+  </div>
+  <div class="card" style="margin-top:4px">
+    <div class="chdr"><div class="cico ins">&#128176;</div><div><div class="ctitle">Salary Q&amp;A (AI-Powered)</div><div class="csub">Role &amp; city specific answers</div></div></div>
+    <textarea class="cinput" id="salinput" style="height:54px;width:100%;margin-bottom:8px" placeholder="e.g. Salary for MCA Python Developer fresher in Hyderabad?"></textarea>
+    <button class="sbtn" style="width:100%;height:38px;flex-direction:row;font-size:.72rem" onclick="sendSal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>&nbsp;Get Salary Insights
+    </button>
+    <div id="salResp" style="margin-top:9px"></div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<nav class="botnav">
+  <button class="ni active" onclick="switchTab('guide',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>Guide</button>
+  <button class="ni" onclick="switchTab('trends',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>Trends<span class="nbdg show">LIVE</span></button>
+  <button class="ni" onclick="switchTab('streams',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Streams</button>
+  <button class="ni" onclick="switchTab('roadmap',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>Roadmap</button>
+  <button class="ni" onclick="switchTab('skills',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>Skills<span class="nbdg" id="skillBadge"></span></button>
+</nav>
+<script>
+// ============================================================
+// STATE
+// ============================================================
+let sd='', ss='';
+const SK = JSON.parse(localStorage.getItem('cl_sk')||'{}');
+
+const SPECS = {
+  'BTech/BE':['CSE','IT','ECE','EEE','Mechanical','Civil','AI & ML','Data Science','Chemical'],
+  'MCA':['Full Stack','Data Science','Cloud Computing','Cybersecurity','AI/ML','Mobile Dev'],
+  'BCom':['Accounting','Finance','E-Commerce','Taxation','Banking','CA Foundation'],
+  'BA':['English','Economics','Psychology','Political Science','Journalism','Sociology'],
+  'BSc':['Computer Science','Mathematics','Physics','Chemistry','Biotechnology','Statistics'],
+  'BBA/MBA':['Marketing','Finance','HR','Operations','Entrepreneurship','Analytics'],
+  'BCA':['Web Development','App Development','Database','Networking','AI/ML','Game Dev'],
+  'Diploma':['Mechanical','Civil','Electronics','Computer Science','Electrical','Pharmacy'],
+  'Other':['General','Vocational','Arts','Commerce','Science']
+};
+
+// ============================================================
+// DEGREE / SPEC SELECTION
+// ============================================================
+document.querySelectorAll('.dbtn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.dbtn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    sd = b.dataset.d; ss = '';
+    renderSpecs(); showProfCard(); showStream(sd);
+  });
+});
+
+function renderSpecs() {
+  const sec = document.getElementById('specsec');
+  const row = document.getElementById('specrow');
+  const specs = SPECS[sd] || [];
+  row.innerHTML = specs.map(s => `<button class="spchip" onclick="selSpec('${s}',this)">${s}</button>`).join('');
+  sec.style.display = specs.length ? 'block' : 'none';
+}
+
+function selSpec(spec, el) {
+  document.querySelectorAll('.spchip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  ss = spec;
+  showProfCard();
+  // Do NOT auto-call AI — user must tap "Generate Full Career Plan" button
+}
+
+function showProfCard() {
+  if (!sd) return;
+  document.getElementById('pctitle').textContent = sd + (ss ? ' — ' + ss : '') + ' Graduate';
+  document.getElementById('pcmeta').innerHTML = [sd, ss, 'Fresher', 'India 2025'].filter(Boolean)
+    .map(t => `<span class="pctag">${t}</span>`).join('');
+  const hp = document.getElementById('hdrProf');
+  hp.textContent = sd + (ss ? ' · ' + ss : '');
+  hp.style.display = 'block';
+  document.getElementById('cinput').placeholder = `Ask about careers for ${sd}${ss ? ' ' + ss : ''} in India...`;
+  document.getElementById('profcard').classList.add('show');
+}
+
+// ============================================================
+// AUTO-GENERATE (AI calls on spec select)
+// ============================================================
+function autoGen() {
+  if (!sd) return;
+  genRoadmap();
+  genSkills();
+  genCompanies();
+}
+
+async function genRoadmap() {
+  document.getElementById('rmTitle').textContent = `6-Month Plan — ${sd}${ss ? ' · ' + ss : ''}`;
+  document.getElementById('rmSub').textContent = 'AI-generated personalized roadmap for your stream';
+  const el = document.getElementById('rmContent');
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Building your roadmap...</div>`;
+  try {
+    const t = await ai(`Create a precise 6-step 6-month career roadmap for a fresh ${sd}${ss ? ' (' + ss + ')' : ''} graduate in India. Respond ONLY in valid JSON, no markdown backticks: {"steps":[{"title":"","desc":"2-3 sentences with India-specific resources","duration":"","resources":["r1","r2"]}]}`, 900);
+    const d = JSON.parse(t.replace(/```json|```/g, '').trim());
+    el.innerHTML = d.steps.map((s, i) => `
+      <div class="rmstep">
+        <div class="rmnum">${i + 1}</div>
+        <div class="rmbody">
+          <div class="rmtitle">${s.title}</div>
+          <div class="rmdesc">${s.desc}</div>
+          ${s.resources ? `<div style="margin-top:5px">${s.resources.map(r => `<span class="stag">${r}</span>`).join('')}</div>` : ''}
+          <div class="rmdur">&#9201; ${s.duration}</div>
+        </div>
+      </div>`).join('');
+  } catch(e) {
+    el.innerHTML = `<div class="card"><p style="color:var(--mut);font-size:.78rem">Could not generate. ${e.message}</p></div>`;
+  }
+}
+
+async function genSkills() {
+  document.getElementById('skillsContent').innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Building skill checklist for ${sd}${ss ? ' · ' + ss : ''}...</div>`;
+  try {
+    const t = await ai(`List 12 skills for a ${sd}${ss ? ' (' + ss + ')' : ''} fresher in India to get hired. Respond ONLY in valid JSON no backticks: {"skills":[{"name":"","category":"Technical|Soft|Tools|Domain","priority":"Must-Have|Good-to-Have|Bonus","learn":"free resource in India","hot":true}]}`, 900);
+    const d = JSON.parse(t.replace(/```json|```/g, '').trim());
+    renderSkills(d.skills);
+  } catch(e) {
+    document.getElementById('skillsContent').innerHTML = `<div class="empty"><p>Error: ${e.message}</p></div>`;
+  }
+}
+
+function renderSkills(skills) {
+  const key = `${sd}_${ss}`;
+  const saved = SK[key] || {};
+  const done = skills.filter((_, i) => saved[i]).length;
+  const pct = skills.length ? Math.round(done / skills.length * 100) : 0;
+  const b = document.getElementById('skillBadge');
+  b.textContent = pct + '%'; b.classList.add('show');
+  document.getElementById('skillsContent').innerHTML = `
+    <div class="splbl"><span>Progress — ${sd}${ss ? ' · ' + ss : ''}</span><span>${done}/${skills.length} Skills</span></div>
+    <div class="spbar"><div class="spfill" style="width:${pct}%"></div></div>
+    <div style="font-size:.68rem;color:var(--mut);margin-bottom:9px">Tap any skill to mark as learned. Saved locally on your device.</div>
+    ${skills.map((s, i) => `
+      <div class="skl ${saved[i] ? 'done' : ''}" onclick="togSkill(${i})">
+        <div class="cb">${saved[i] ? '&#10003;' : ''}</div>
+        <div class="ski">
+          <div class="skn">${s.name}${s.hot ? ' <span class="stag hot">HOT</span>' : ''}</div>
+          <div class="skm">${s.category} &middot; ${s.priority} &middot; &#128205; ${s.learn}</div>
+        </div>
+      </div>`).join('')}`;
+  window._cskills = skills;
+}
+
+function togSkill(i) {
+  const key = `${sd}_${ss}`;
+  if (!SK[key]) SK[key] = {};
+  SK[key][i] = !SK[key][i];
+  localStorage.setItem('cl_sk', JSON.stringify(SK));
+  renderSkills(window._cskills);
+}
+
+async function genCompanies() {
+  document.getElementById('coTitle').textContent = `Hiring — ${sd}${ss ? ' · ' + ss : ''}`;
+  document.getElementById('coSub').textContent = 'Companies actively hiring freshers in your stream';
+  document.getElementById('coContent').innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Finding companies hiring ${sd}${ss ? ' ' + ss : ''} freshers...</div>`;
+  try {
+    const t = await ai(`List 12 real companies hiring fresh ${sd}${ss ? ' (' + ss + ')' : ''} graduates in India 2025. Respond ONLY in valid JSON no backticks: {"companies":[{"name":"","role":"","salary":"INR X-YL CTC","type":"mass|startup|product","note":"one-line apply tip"}]}. Mix mass recruiters, startups, product companies.`, 900);
+    const d = JSON.parse(t.replace(/```json|```/g, '').trim());
+    document.getElementById('coContent').innerHTML = `<div class="cogrid">${d.companies.map(c => `
+      <div class="cocard">
+        <div class="coname">${c.name}</div>
+        <div class="corole">${c.role}</div>
+        <div class="coinfo">${c.salary}<br>${c.note}</div>
+        <span class="cobadge ${c.type}">${c.type === 'mass' ? '&#128230; Mass' : c.type === 'startup' ? '&#128640; Startup' : '&#128142; Product'}</span>
+      </div>`).join('')}</div>`;
+  } catch(e) {
+    document.getElementById('coContent').innerHTML = `<div class="empty"><p>${e.message}</p></div>`;
+  }
+}
+
+// ============================================================
+// STREAM KNOWLEDGE BASE (100% API-FREE, built-in)
+// ============================================================
+const SD_DATA = {
+  'BTech/BE': {
+    icon:'&#9881;&#65039;', color:'var(--ac)',
+    tag:"Engineering &amp; Technology — India's most hired degree",
+    stats:[{v:'4.2L+',l:'Jobs/Month'},{v:'&#8377;4-12L',l:'Fresher CTC'},{v:'82%',l:'Placement Rate'}],
+    about:"BTech/BE is the most in-demand technical degree in India. With rapid growth in IT, manufacturing, infrastructure and AI, engineers have the widest job opportunities — from software to core engineering to management consultancy.",
+    first:['Software Developer/Engineer','IT Analyst (TCS/Infosys/Wipro)','Junior Data Analyst','Test/QA Engineer','Technical Support Engineer','CAD Designer (Mech/Civil)'],
+    second:['Senior Software Engineer (&#8377;12-25L)','AI/ML Engineer (&#8377;15-35L)','Product Manager (&#8377;18-40L)','Solutions Architect (&#8377;20-45L)','Engineering Manager (&#8377;25-60L)'],
+    core:['DSA &amp; Problem Solving','Python / Java / C++','Git &amp; Version Control','SQL &amp; Databases','System Design'],
+    hot:['Generative AI &amp; LLMs','Cloud (AWS/Azure/GCP)','DevOps &amp; Docker','React / Node.js','Kubernetes'],
+    exams:[{n:'GATE',d:'PSU Jobs + IIT/IISc MTech admission',b:'&#127942; Prestigious',c:'var(--gold)'},{n:'CAT / GMAT',d:'IIM MBA — massive salary jump',b:'&#128200; High ROI',c:'var(--ac2)'},{n:'UPSC ESE (IES)',d:'Engineering Services — Central Govt Officer',b:'&#127970; Elite Govt',c:'var(--grn)'},{n:'SSC JE',d:'Junior Engineer — Central Govt departments',b:'&#127970; Govt Secure',c:'var(--grn)'},{n:'AWS / GCP Cert',d:'Cloud certification — most demanded in 2025',b:'&#128293; HOT',c:'var(--ac3)'}],
+    path:[{l:'0-1yr: Trainee / Junior Dev',t:'fresher'},{l:'2-4yr: Software Engineer',t:'mid'},{l:'5-8yr: Senior Engineer / TL',t:'senior'},{l:'8+yr: Architect / Eng Manager',t:'senior'}],
+    certs:['NPTEL Online Certifications (IIT quality, free)','Google Cloud / AWS Free Tier','Meta Front-End Developer (Coursera)','Microsoft Azure AZ-900 Fundamentals','GitHub Student Developer Pack'],
+    cos:['TCS','Infosys','Wipro','HCL','Tech Mahindra','Accenture','Capgemini','IBM','Microsoft','Google','Amazon','Freshworks'],
+    pros:['Widest job market in India','Multiple career pivots possible','Both IT and core options open','High demand for next 10+ years'],
+    cons:['Very competitive — lakhs graduate each year','Core engineering jobs limited to industrial cities','Requires constant upskilling to stay relevant'],
+    res:[{n:'GeeksforGeeks',u:'https://geeksforgeeks.org',d:'DSA &amp; Interview prep'},{n:'NPTEL Swayam',u:'https://swayam.gov.in',d:'Free IIT-quality courses'},{n:'Coursera',u:'https://coursera.org',d:'Google / Meta certificates'},{n:'GitHub Student Pack',u:'https://education.github.com',d:'Free tools for students'}]
+  },
+  'MCA': {
+    icon:'&#128187;', color:'#7b61ff',
+    tag:"Master of Computer Applications — IT's post-grad powerhouse",
+    stats:[{v:'2.8L+',l:'IT Jobs/Month'},{v:'&#8377;4-10L',l:'Fresher CTC'},{v:'78%',l:'Placement Rate'}],
+    about:"MCA is a postgraduate program that produces job-ready IT professionals. MCA graduates are highly preferred by IT companies and often earn better packages than BCA/BCom CS graduates. The 2-year restructured program makes it even more industry-focused.",
+    first:['Software Developer','Web Developer (Full Stack)','Junior DBA','Software Tester / QA','IT Support Analyst','Junior Python / Java Developer'],
+    second:['Senior Developer (&#8377;10-20L)','Data Scientist (&#8377;12-25L)','DevOps Engineer (&#8377;14-28L)','Cloud Architect (&#8377;20-40L)','IT Project Manager (&#8377;18-35L)'],
+    core:['Java / Python / C#','HTML / CSS / JavaScript','DBMS &amp; SQL','OS &amp; Networking','OOP Concepts'],
+    hot:['Full Stack (React + Node)','Python for Data Science','Cloud AWS/Azure','Flutter / React Native','Generative AI / Prompt Engineering'],
+    exams:[{n:'GATE CS',d:'PSU jobs + research + IIT MTech',b:'&#127942; Competitive',c:'var(--gold)'},{n:'AWS SAA-C03',d:'Solutions Architect certification',b:'&#128293; HOT',c:'var(--ac3)'},{n:'Google Cloud ACE',d:'Associate Cloud Engineer certification',b:'&#128293; HOT',c:'var(--ac3)'},{n:'NIMCET',d:'NIT MCA entrance — if still studying',b:'&#127891; Academic',c:'var(--ac)'}],
+    path:[{l:'0-1yr: Junior Developer',t:'fresher'},{l:'2-4yr: Software Engineer',t:'mid'},{l:'4-7yr: Senior Dev / Tech Lead',t:'senior'},{l:'7+yr: Solution Architect / PM',t:'senior'}],
+    certs:['Oracle Java SE Certification','Microsoft AZ-900 Azure Fundamentals','AWS Cloud Practitioner','Google Data Analytics (Coursera)','Meta Back-End Developer Certificate'],
+    cos:['TCS','Infosys','Wipro','Cognizant','HCL','Mphasis','Hexaware','Persistent','Freshworks','Zoho','LTIMindtree'],
+    pros:['Strong IT industry demand','Better packages than BCA freshers','Diverse specialization options','Growing startup ecosystem in India'],
+    cons:['Competes directly with BTech CSE grads','Need strong coding skills to stand out','Limited non-IT career options'],
+    res:[{n:'HackerRank',u:'https://hackerrank.com',d:'Coding practice &amp; certificates'},{n:'FreeCodeCamp',u:'https://freecodecamp.org',d:'Free full-stack curriculum'},{n:'PrepInsta',u:'https://prepinsta.com',d:'TCS / Infosys placement prep'},{n:'LeetCode',u:'https://leetcode.com',d:'DSA interview preparation'}]
+  },
+  'BCom': {
+    icon:'&#128202;', color:'var(--gold)',
+    tag:"Bachelor of Commerce — Finance, Accounting &amp; Business",
+    stats:[{v:'1.8L+',l:'Finance Jobs/Month'},{v:'&#8377;2.5-6L',l:'Fresher CTC'},{v:'65%',l:'Placement Rate'}],
+    about:"BCom opens doors to accounting, finance, taxation, banking, and e-commerce. With India's growing fintech sector, GST system, and digital economy, BCom graduates have expanding opportunities. Pursuing CA, CMA, or MBA significantly multiplies earning potential.",
+    first:['Accounts Executive','Junior Accountant','Banking Customer Executive','Tax Assistant','E-Commerce Executive','Data Entry / Back Office Executive'],
+    second:['Chartered Accountant (&#8377;8-25L)','Financial Analyst (&#8377;8-18L)','Investment Banker (&#8377;15-40L)','CMA Cost Accountant (&#8377;7-15L)','Finance Manager (&#8377;12-25L)'],
+    core:['Tally ERP / TallyPrime','MS Excel Advanced','GST &amp; Taxation','Financial Accounting','Banking Operations'],
+    hot:['Financial Modelling','Power BI / Tableau','Python for Finance','SAP FICO','Digital Banking / FinTech'],
+    exams:[{n:'CA Foundation (ICAI)',d:'Chartered Accountancy — the gold standard',b:'&#127942; Prestigious',c:'var(--gold)'},{n:'CMA Foundation',d:'Cost Management Accounting certification',b:'&#128202; Finance',c:'var(--ac2)'},{n:'IBPS PO / Bank PO',d:'Banking jobs — SBI, PNB, BOB, Canara',b:'&#127970; Govt Secure',c:'var(--grn)'},{n:'SSC CGL',d:'Central govt clerical / officer grade posts',b:'&#127970; Govt',c:'var(--grn)'},{n:'MBA Finance (CAT)',d:'IIM route — 2-3x salary jump possible',b:'&#128200; High ROI',c:'var(--ac)'}],
+    path:[{l:'0-2yr: Accounts / Finance Exec',t:'fresher'},{l:'2-5yr: Senior Executive / Analyst',t:'mid'},{l:'5-9yr: Finance Manager / CA',t:'senior'},{l:'9+yr: CFO / Finance Director',t:'senior'}],
+    certs:['Tally Professional Certification','GST Practitioner Certificate (GSTN)','NISM Certifications (SEBI approved)','CFA Level 1 (global standard)','Google Digital Marketing Certificate'],
+    cos:['Deloitte','EY','KPMG','PwC','HDFC Bank','ICICI Bank','Axis Bank','Infosys BPO','Genpact','Wipro BPS','Reliance Retail'],
+    pros:['Stable demand across all sectors','CA route has very high ROI','Banking is recession-proof','Multiple higher study options available'],
+    cons:['Entry-level salaries are lower vs engineering','Need extra certs (Tally, GST) to stand out','CA qualification requires years of dedication'],
+    res:[{n:'ICAI Website',u:'https://icai.org',d:'CA exam registration &amp; material'},{n:'Tally Academy',u:'https://tallysolutions.com',d:'Free Tally learning'},{n:'NISM e-Learning',u:'https://nism.ac.in',d:'SEBI certified finance courses'},{n:'Coursera Finance',u:'https://coursera.org',d:'Yale Financial Markets (free audit)'}]
+  },
+  'BA': {
+    icon:'&#128218;', color:'var(--ac3)',
+    tag:"Bachelor of Arts — Humanities, Communication &amp; Creative Careers",
+    stats:[{v:'90K+',l:'Content Jobs/Month'},{v:'&#8377;2-5L',l:'Fresher CTC'},{v:'55%',l:'Placement Rate'}],
+    about:"BA graduates are highly adaptable and thrive in content, education, civil services, law, HR, and the creative industry. With the rise of digital content and EdTech, BA English/Journalism/Psychology graduates are in growing demand. Civil services remain the most prestigious route.",
+    first:['Content Writer / Copywriter','Social Media Executive','HR Recruiter','Customer Support Executive','Junior Journalist','Teacher / Tutor'],
+    second:['Content Strategist (&#8377;6-15L)','HR Business Partner (&#8377;8-18L)','IAS / IPS Officer (UPSC)','PR Manager (&#8377;7-15L)','UX Writer (&#8377;8-16L)','Lawyer (LLB route, &#8377;6-20L)'],
+    core:['Written &amp; Verbal Communication','Research &amp; Analysis','MS Office Suite','Content Writing','Social Media Management'],
+    hot:['SEO &amp; Content Marketing','Digital Marketing (Google Ads)','UX Writing','Data Literacy (Excel/SQL basics)','Video Scripting / Podcasting'],
+    exams:[{n:'UPSC Civil Services',d:'IAS / IPS / IFS — most prestigious career',b:'&#127942; Elite',c:'var(--gold)'},{n:'SSC CHSL / CGL',d:'Central govt clerical / officer posts',b:'&#127970; Govt',c:'var(--grn)'},{n:'LLB Entrance',d:'Law degree — 3-year route after graduation',b:'&#9878;&#65039; Law',c:'var(--ac2)'},{n:'CAT for MBA',d:'Management — HR / Marketing / Comms',b:'&#128200; High ROI',c:'var(--ac)'},{n:'State PSC Exams',d:'State civil services — each state',b:'&#127970; Govt',c:'var(--grn)'}],
+    path:[{l:'0-2yr: Content / HR Executive',t:'fresher'},{l:'2-5yr: Senior Writer / HR Manager',t:'mid'},{l:'5-9yr: Content Head / HRBP',t:'senior'},{l:'9+yr: CMO / HR Director / IAS Officer',t:'senior'}],
+    certs:['Google Digital Marketing Certificate','HubSpot Content Marketing Certification','SHRM HR Certification','IIMC Journalism Certificate','LinkedIn Learning Courses (free trial)'],
+    cos:['Times of India','Hindustan Times',"Byju's",'Unacademy','IndiaMart','Swiggy (content team)','NASSCOM','Ad Agencies','PR Firms','NGOs'],
+    pros:['Thriving digital content economy','Civil services is highly respected &amp; secure','Very versatile degree — many pivots','EdTech sector is growing rapidly'],
+    cons:['Lower starting salaries than STEM','Less structured career path','Need additional skills / certifications to compete'],
+    res:[{n:'UPSC Portal',u:'https://upsc.gov.in',d:'Official civil services prep'},{n:'HubSpot Academy',u:'https://academy.hubspot.com',d:'Free marketing certifications'},{n:'Google Digital Garage',u:'https://learndigital.withgoogle.com',d:'Free digital marketing'},{n:'Coursera',u:'https://coursera.org',d:'Yale, Psychology, Economics courses'}]
+  },
+  'BSc': {
+    icon:'&#128300;', color:'var(--grn)',
+    tag:"Bachelor of Science — Research, Tech &amp; Applied Sciences",
+    stats:[{v:'80K+',l:'Science Jobs/Month'},{v:'&#8377;2.5-7L',l:'Fresher CTC'},{v:'60%',l:'Placement Rate'}],
+    about:"BSc graduates have strong analytical foundations. BSc CS/Maths/Statistics graduates increasingly enter IT and data science. BSc Physics/Chemistry/Bio opens pharmaceutical, research, and government science jobs. The bridge to MSc, MTech, or data science is very strong.",
+    first:['Lab Analyst / Research Assistant','Junior Data Analyst (BSc CS/Maths/Stats)','Pharma Sales Executive (BSc Bio/Chem)','Science Teacher','IT Support Engineer (BSc CS)','Quality Control Analyst'],
+    second:['Data Scientist (&#8377;8-20L)','Research Scientist (&#8377;6-15L)','Pharmaceutical Analyst (&#8377;7-14L)','Biotech Researcher (&#8377;6-12L)','Actuarial Analyst (&#8377;10-25L)'],
+    core:['Analytical &amp; Scientific Thinking','MS Excel &amp; Data Analysis','Python (BSc CS/Maths/Stats)','Laboratory Skills','Technical Report Writing'],
+    hot:['Python for Data Science','Machine Learning Basics','Bioinformatics','Statistical Analysis (R/SPSS)','SQL &amp; Databases'],
+    exams:[{n:'CSIR NET / GATE',d:'Research, PSU jobs &amp; PhD admission',b:'&#128300; Research',c:'var(--grn)'},{n:'IIT JAM',d:'MSc admission at IITs — premium',b:'&#127942; Prestigious',c:'var(--gold)'},{n:'ICAR / ICMR',d:'Agriculture &amp; Medical research bodies',b:'&#127970; Govt',c:'var(--grn)'},{n:'Actuarial CT Exams',d:'Insurance &amp; finance — very high salary',b:'&#128176; High Pay',c:'var(--ac)'}],
+    path:[{l:'0-2yr: Analyst / Research Asst',t:'fresher'},{l:'2-5yr: Senior Analyst / Scientist',t:'mid'},{l:'5-9yr: Data Scientist / Researcher',t:'senior'},{l:'9+yr: Chief Scientist / DS Lead',t:'senior'}],
+    certs:['Google Data Analytics (Coursera)','IBM Data Science Professional Certificate','NPTEL Data Science Courses (free)','Kaggle Certifications (free)','Actuarial exams (IAI India)'],
+    cos:["Dr. Reddy's",'Sun Pharma','Cipla','ISRO','DRDO','TCS (Analytics)','Mu Sigma','Fractal Analytics','Nielsen','IQVIA'],
+    pros:['Strong analytical foundation','Data science pivot is accessible with upskilling','Research &amp; PSU jobs available','High earning potential in data roles'],
+    cons:['Core science jobs need MSc/PhD','Entry-level research pays less','Need to upskill in tech tools to compete'],
+    res:[{n:'Kaggle',u:'https://kaggle.com',d:'Free data science &amp; competitions'},{n:'CSIR NET Prep',u:'https://csirhrdg.res.in',d:'Official CSIR resources'},{n:'IBM Data Science',u:'https://coursera.org',d:'Industry certificate (Coursera)'},{n:'NPTEL',u:'https://nptel.ac.in',d:'IIT-quality free science courses'}]
+  },
+  'BBA/MBA': {
+    icon:'&#127970;', color:'var(--ac2)',
+    tag:"Business Administration — Management, Strategy &amp; Leadership",
+    stats:[{v:'1.5L+',l:'Mgmt Jobs/Month'},{v:'&#8377;3-15L',l:'Fresher CTC'},{v:'72%',l:'Placement Rate'}],
+    about:"BBA/MBA is the gateway to corporate management, entrepreneurship, consulting, and leadership. MBA from a top institution (IIM, XLRI, MDI) dramatically multiplies salary — often 3-5x. BBA gives business foundation while MBA is the ultimate career accelerator.",
+    first:['Management Trainee / Graduate Trainee','Sales &amp; Marketing Executive','HR Executive','Operations Coordinator','Business Development Executive','Customer Success Manager'],
+    second:['Product Manager (&#8377;15-40L)','Strategy Consultant (&#8377;18-50L)','Marketing Manager (&#8377;10-25L)','Investment Banker (&#8377;20-60L)','Entrepreneur / Startup Founder'],
+    core:['Business Communication','MS Excel &amp; PowerPoint','Financial Analysis','Marketing Fundamentals','Project Management'],
+    hot:['Product Management','Digital Marketing &amp; Analytics','Business Intelligence (Power BI)','Supply Chain (SAP/Oracle)','Data-Driven Decision Making'],
+    exams:[{n:'CAT',d:'IIM MBA — highest salary packages in India',b:'&#127942; Top Tier',c:'var(--gold)'},{n:'XAT / SNAP / IIFT',d:'XLRI, Symbiosis, IIFT MBA programs',b:'&#128200; Premium',c:'var(--ac)'},{n:'GMAT',d:'International MBA / ISB Hyderabad',b:'&#127758; Global',c:'var(--ac2)'},{n:'UPSC Civil Services',d:'IAS — management background is an asset',b:'&#127970; Elite',c:'var(--grn)'}],
+    path:[{l:'0-2yr: Management Trainee',t:'fresher'},{l:'2-5yr: Manager / Senior Exec',t:'mid'},{l:'5-9yr: Senior Manager / AVP',t:'senior'},{l:'9+yr: VP / Director / Founder',t:'senior'}],
+    certs:['Google Project Management (Coursera)','PMP Certification','CFA Level 1 (Finance track)','Digital Marketing Google Certificate','HubSpot Marketing Certification'],
+    cos:['McKinsey','BCG','Bain','Deloitte','Amazon','Flipkart','Marico','ITC','HUL','Asian Paints','HDFC Bank','Kotak','Myntra'],
+    pros:['Widest industry choice among all degrees','MBA = massive salary jump','Entrepreneurship ecosystem growing fast','Strong alumni networks at top schools'],
+    cons:['Good MBA is expensive (&#8377;15-30L fees)','BBA alone has limited premium roles','Very competitive for top consulting firms'],
+    res:[{n:'IIM CAT Portal',u:'https://cat.iim.ac.in',d:'Official CAT information'},{n:'MBA Crystal Ball',u:'https://mbacrystalball.com',d:'MBA admissions guide India'},{n:'Coursera Business',u:'https://coursera.org',d:'Yale, Wharton free audit courses'},{n:'Harvard Online',u:'https://online.hbs.edu',d:'HBS free online courses'}]
+  },
+  'BCA': {
+    icon:'&#128421;&#65039;', color:'var(--ac)',
+    tag:"Bachelor of Computer Applications — IT-ready graduates",
+    stats:[{v:'1.2L+',l:'IT Jobs/Month'},{v:'&#8377;3-7L',l:'Fresher CTC'},{v:'68%',l:'Placement Rate'}],
+    about:"BCA is a 3-year undergraduate program giving strong IT foundations. BCA graduates are well-positioned for software development, web development, and IT support roles. MCA after BCA is a popular route for higher packages. Rising demand for app and web developers makes BCA more relevant than ever.",
+    first:['Junior Web Developer','Software Tester / QA Engineer','IT Support Executive','Junior App Developer','Database Administrator Trainee','Technical Support Engineer'],
+    second:['Full Stack Developer (&#8377;8-18L)','Mobile App Developer (&#8377;10-22L)','Data Analyst (&#8377;8-16L)','Cloud Engineer (&#8377;12-25L)','Senior Developer (&#8377;14-28L)'],
+    core:['Programming (C/C++/Java/Python)','Web Dev (HTML/CSS/JavaScript)','DBMS &amp; SQL','Networking Basics','Software Testing'],
+    hot:['React.js / Vue.js','Python &amp; Django','Flutter / React Native','Cloud AWS/GCP basics','UI/UX with Figma'],
+    exams:[{n:'MCA Entrance (NIMCET/State)',d:'Upgrade qualification for higher salary',b:'&#127891; Upgrade',c:'var(--ac)'},{n:'AWS Cloud Practitioner',d:'Industry certification — free tier available',b:'&#128293; HOT',c:'var(--ac3)'},{n:'Meta Front-End Certificate',d:'Coursera — globally recognized 2025',b:'&#128293; HOT',c:'var(--ac3)'},{n:'SSC CGL (Tech Posts)',d:'Government IT officer grade posts',b:'&#127970; Govt',c:'var(--grn)'}],
+    path:[{l:'0-1yr: Trainee / Junior Dev',t:'fresher'},{l:'2-4yr: Developer / Engineer',t:'mid'},{l:'4-7yr: Senior Dev / Tech Lead',t:'senior'},{l:'7+yr: Architect / Eng Manager',t:'senior'}],
+    certs:['Meta Front-End Developer (Coursera)','Google UX Design Certificate','AWS Cloud Practitioner','FreeCodeCamp Full Stack Cert','Android Developer (Google free)'],
+    cos:['TCS','Infosys','Wipro','Capgemini','Accenture','HCL','Mphasis','Zensar','Persistent','Product startups via AngelList'],
+    pros:['Strong demand in IT sector','Good pathway to MCA','Startup opportunities growing fast','Flexible / remote work roles available'],
+    cons:['Competes directly with BTech CSE','Coding skills are absolutely non-negotiable','Salary ceiling without MCA or MBA'],
+    res:[{n:'FreeCodeCamp',u:'https://freecodecamp.org',d:'Complete free web dev curriculum'},{n:'The Odin Project',u:'https://theodinproject.com',d:'Free full-stack development'},{n:'CS50 Harvard',u:'https://cs50.harvard.edu',d:"World's best intro to CS — free"},{n:'GeeksforGeeks',u:'https://geeksforgeeks.org',d:'Interview prep &amp; practice'}]
+  },
+  'Diploma': {
+    icon:'&#127891;', color:'var(--mut)',
+    tag:"Diploma — Vocational &amp; Technical Job-Ready Programs",
+    stats:[{v:'60K+',l:'Technical Jobs/Month'},{v:'&#8377;1.8-4L',l:'Fresher CTC'},{v:'62%',l:'Placement Rate'}],
+    about:"Diploma programs (Polytechnic) are 3-year technical courses offering hands-on skills. Diploma holders get direct job entry or continue to BTech via lateral entry (2nd year). Many government and manufacturing sector jobs specifically prefer diploma candidates.",
+    first:['Junior Technician','CAD Operator (Mech/Civil)','Site Supervisor (Civil)','IT Support Engineer (CS Diploma)','Production / QC Technician','Electrical / Electronics Technician'],
+    second:['Technical Supervisor (&#8377;4-8L)','Site Engineer (via BTech lateral)','IT Systems Admin (&#8377;5-10L)','QA Engineer (&#8377;5-9L)','Technical Sales Engineer (&#8377;5-10L)'],
+    core:['AutoCAD / SolidWorks (Mech/Civil)','Electrical Wiring &amp; PLC (EEE)','Programming Basics (CS Diploma)','Workshop &amp; Lab Skills','Technical Drawing'],
+    hot:['Industrial IoT','CNC Machine Operation','PLC / SCADA Programming','Solar / Renewable Energy Tech','3D Printing &amp; Fabrication'],
+    exams:[{n:'BTech Lateral Entry',d:'Enter 2nd year BTech — upgrade qualification',b:'&#128200; Upgrade',c:'var(--ac)'},{n:'SSC JE',d:'Junior Engineer — Central Government',b:'&#127970; Govt Secure',c:'var(--grn)'},{n:'DRDO Technician',d:'Defence Research Organisation technician posts',b:'&#127970; Govt',c:'var(--grn)'},{n:'ITI Trade Tests',d:'Govt certified technical trade certification',b:'&#127891; Trade',c:'var(--mut)'}],
+    path:[{l:'0-2yr: Trainee Technician',t:'fresher'},{l:'2-5yr: Senior Tech / Operator',t:'mid'},{l:'5-9yr: Supervisor (BTech lateral)',t:'senior'},{l:'9+yr: Plant Manager / Tech Lead',t:'senior'}],
+    certs:['AutoCAD Certification (Autodesk)','NIELIT O/A Level (CS Diploma)','ITI Apprenticeship Certificate','Siemens PLC Training Program','Solar Technician (MNRE certified)'],
+    cos:['L&amp;T','Bosch India','Mahindra','BHEL','NTPC','HAL','Indian Oil','Tata Motors','Local MSMEs','State Govt Departments'],
+    pros:['Faster entry into workforce than degree','BTech lateral entry is possible','Government sector actively hires diploma','Hands-on practical skills valued in industry'],
+    cons:['Lower starting salary than BTech graduates','Limited management / leadership roles initially','Need BTech/BE for significant career growth'],
+    res:[{n:'Swayam / NPTEL',u:'https://swayam.gov.in',d:'Free government technical courses'},{n:'NIELIT',u:'https://nielit.gov.in',d:'IT certifications for diploma holders'},{n:'Skill India Portal',u:'https://skillindia.gov.in',d:'Free skill development programs'},{n:'Autodesk Education',u:'https://autodesk.com/education',d:'Free CAD tools for students'}]
+  }
+};
+
+function showStream(deg) {
+  const d = SD_DATA[deg];
+  if (!d) { document.getElementById('streamDetail').innerHTML = `<div class="empty"><p>Stream data coming soon for ${deg}.</p></div>`; return; }
+  document.getElementById('streamDetail').innerHTML = `
+    <div style="animation:fadeUp .4s ease both">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
+        <span style="font-size:1.8rem">${d.icon}</span>
+        <div><div style="font-weight:800;font-size:.95rem;color:${d.color}">${deg}</div><div style="font-size:.72rem;color:var(--mut)">${d.tag}</div></div>
+      </div>
+      <div class="sstat-grid">${d.stats.map(s => `<div class="sstat"><div class="sstat-v" style="color:${d.color}">${s.v}</div><div class="sstat-l">${s.l}</div></div>`).join('')}</div>
+      <div class="card" style="margin-bottom:9px"><p style="font-size:.78rem;line-height:1.65;color:var(--mut)">${d.about}</p></div>
+      <div class="slbl">&#128640; First Line Jobs &mdash; Apply Now (0-6 Months)</div>
+      <div style="margin-bottom:11px">${d.first.map(j => `<span class="stag" style="border-color:${d.color};color:${d.color}">${j}</span>`).join('')}</div>
+      <div class="slbl">&#11088; Second Line Jobs &mdash; After 2 Years Experience</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:12px">${d.second.map(j => `<div style="font-size:.76rem;padding:5px 9px;background:var(--sur2);border:1px solid var(--bdr);border-radius:6px;border-left:2px solid var(--ac2)">&#11088; ${j}</div>`).join('')}</div>
+      <div class="slbl">&#128293; Hot Skills Right Now (2025)</div>
+      <div style="margin-bottom:5px">${d.hot.map(s => `<span class="stag hot">${s}</span>`).join('')}</div>
+      <div style="margin-bottom:12px">${d.core.map(s => `<span class="stag">${s}</span>`).join('')}</div>
+      <div class="slbl">&#128205; Career Path</div>
+      <div class="cpflow">${d.path.map((c, i) => `<span class="cpnode ${c.t}">${c.l}</span>${i < d.path.length - 1 ? '<span class="cparr">&#10132;</span>' : ''}`).join('')}</div>
+      <div class="slbl">&#128221; Key Exams &amp; Certifications to Target</div>
+      <div class="examrow" style="margin-bottom:12px">
+        ${d.exams.map(e => `
+          <div class="examitem">
+            <div class="exname">${e.n}</div>
+            <div class="exdet">${e.d}</div>
+            <span class="exbadge" style="background:rgba(0,0,0,.3);color:${e.c};border:1px solid ${e.c}">${e.b}</span>
+          </div>`).join('')}
+      </div>
+      <div class="slbl">&#127970; Top Hiring Companies</div>
+      <div style="margin-bottom:12px">${d.cos.map(c => `<span class="stag">${c}</span>`).join('')}</div>
+      <div class="slbl">&#9989; Recommended Certifications</div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:12px">
+        ${d.certs.map(c => `<div style="font-size:.74rem;padding:5px 9px;background:var(--sur2);border:1px solid var(--bdr);border-radius:6px">&#127891; ${c}</div>`).join('')}
+      </div>
+      <div class="slbl">&#128279; Free Learning Resources</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+        ${d.res.map(r => `
+          <a href="${r.u}" target="_blank" style="text-decoration:none">
+            <div class="cocard"><div class="coname" style="color:var(--ac)">${r.n}</div><div class="coinfo">${r.d}</div></div>
+          </a>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px">
+        <div class="card" style="padding:11px">
+          <div style="font-size:.7rem;font-weight:700;color:var(--grn);margin-bottom:6px">&#9989; PROS</div>
+          ${d.pros.map(p => `<div style="font-size:.72rem;color:var(--mut);padding:3px 0;border-bottom:1px solid var(--bdr)">&#8226; ${p}</div>`).join('')}
+        </div>
+        <div class="card" style="padding:11px">
+          <div style="font-size:.7rem;font-weight:700;color:var(--ac3);margin-bottom:6px">&#9888;&#65039; CONS</div>
+          ${d.cons.map(c => `<div style="font-size:.72rem;color:var(--mut);padding:3px 0;border-bottom:1px solid var(--bdr)">&#8226; ${c}</div>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
+// ============================================================
+// LIVE NEWS (RSS2JSON free API + curated fallback)
+// ============================================================
+const NEWS_FEEDS = {
+  jobs:    'https://timesofindia.indiatimes.com/rssfeedstopstories.cms',
+  tech:    'https://feeds.feedburner.com/ndtvnews-tech',
+  startup: 'https://yourstory.com/feed',
+  govt:    'https://www.thehindu.com/jobs/feeder/default.rss',
+  edu:     'https://www.thehindu.com/education/feeder/default.rss'
+};
+const NLBL = { jobs:'&#128188; Jobs', tech:'&#128187; Tech', startup:'&#128640; Startups', govt:'&#127970; Govt', edu:'&#127891; Education' };
+const STATIC_NEWS = {
+  jobs:[
+    {t:'India adds 8.5 lakh IT jobs in 2025 — cloud and AI roles lead all hiring categories',s:'Economic Times',b:'jobs',u:'https://economictimes.indiatimes.com/jobs'},
+    {t:'TCS, Infosys, Wipro open mass hiring for 2025 fresher batch — applications live now',s:'Times of India',b:'jobs',u:'https://naukri.com'},
+    {t:'LinkedIn India: AI, Data Science and Cloud are top 3 fastest-growing job categories',s:'LinkedIn India',b:'tech',u:'https://linkedin.com/jobs'},
+    {t:'Startups in Bangalore, Hyderabad, Chennai hiring 50,000+ freshers in 2025',s:'YourStory',b:'biz',u:'https://yourstory.com/jobs'},
+    {t:'Remote work jobs in India grew 34% year-on-year — highest growth in APAC region',s:'NASSCOM',b:'jobs',u:'https://nasscom.in'},
+    {t:'UPSC, SSC and Bank PO exam calendar for 2025-26 released — check complete schedule',s:'SarkariResult',b:'edu',u:'https://sarkariresult.com'},
+    {t:'Internshala reports 3x growth in paid internships for freshers in tech and marketing',s:'Internshala',b:'jobs',u:'https://internshala.com'},
+    {t:'IT sector to hire 3.5 lakh freshers in FY2025-26 according to NASSCOM Annual Outlook',s:'NASSCOM',b:'jobs',u:'https://nasscom.in'}
+  ],
+  tech:[
+    {t:'Generative AI roles in India grew 400% — companies urgently hiring Prompt Engineers',s:'Analytics India Mag',b:'tech',u:'https://analyticsindiamag.com'},
+    {t:'Python tops most-demanded programming language for 5th consecutive year in India',s:'HackerEarth',b:'tech',u:'https://hackerearth.com'},
+    {t:'Full Stack developers with React + Node.js command &#8377;8-15L as freshers in 2025',s:'Naukri Trends',b:'tech',u:'https://naukri.com'},
+    {t:'72% of IT job postings now require cloud certification — AWS leads followed by Azure',s:'Coursera India',b:'tech',u:'https://coursera.org'},
+    {t:'Cybersecurity talent shortage: 5 lakh unfilled positions in India expected by 2025 end',s:'DSCI India',b:'tech',u:'https://dsci.in'},
+    {t:'DevOps engineers among top 10 highest-paid fresher roles — &#8377;7-14L median CTC',s:'AmbitionBox',b:'tech',u:'https://ambitionbox.com'}
+  ],
+  startup:[
+    {t:'Indian startup ecosystem raises $12B in 2025 — fintech and healthtech lead hiring',s:'Inc42',b:'biz',u:'https://inc42.com'},
+    {t:'Bangalore, Hyderabad, Pune lead startup hiring with 200+ unicorns now in India',s:'Startup India',b:'biz',u:'https://startupindia.gov.in'},
+    {t:'Freshers in B2B SaaS startups earn &#8377;6-10L — bypassing traditional mass recruiters',s:'SaaSBoomi',b:'biz',u:'https://yourstory.com'},
+    {t:'Zepto, Swiggy, Zomato, Ola hiring 5,000+ tech and operations roles in 2025',s:'YourStory',b:'biz',u:'https://yourstory.com/jobs'},
+    {t:'Unacademy, PhysicsWallah, Vedantu hiring 3,000+ educators and tech staff in 2025',s:'Inc42',b:'biz',u:'https://inc42.com'}
+  ],
+  govt:[
+    {t:'UPSC CSE 2025 notification released — over 1,000 vacancies for IAS/IPS/IFS',s:'UPSC',b:'edu',u:'https://upsc.gov.in'},
+    {t:'SSC CGL 2025: 14,000+ vacancies across central government departments announced',s:'SSC India',b:'edu',u:'https://ssc.nic.in'},
+    {t:'IBPS PO and Clerk 2025: Banks opening 20,000+ posts — application dates live',s:'IBPS',b:'edu',u:'https://ibps.in'},
+    {t:'Railway RRB Group D and NTPC 2025 — 35,000 vacancies officially announced',s:'RRB India',b:'edu',u:'https://rrbcdg.gov.in'},
+    {t:'NCS Portal: 50 lakh job listings available — freshers can register completely free',s:'Govt of India',b:'edu',u:'https://ncs.gov.in'},
+    {t:'State PSC 2025: Maharashtra, Tamil Nadu, Karnataka releasing bulk notifications',s:'SarkariResult',b:'edu',u:'https://sarkariresult.com'}
+  ],
+  edu:[
+    {t:'NIRF Ranking 2025: Top engineering and management colleges with placement statistics',s:'NIRF India',b:'edu',u:'https://nirfindia.org'},
+    {t:'NEP 2020 implementation: New multi-disciplinary degree options available 2025 batch',s:'UGC India',b:'edu',u:'https://ugc.ac.in'},
+    {t:'Free NPTEL certifications: IIT professors offer 500+ courses recognized by industry',s:'NPTEL',b:'edu',u:'https://nptel.ac.in'},
+    {t:'AICTE Internship Portal: 10,000+ paid internship opportunities open for students',s:'AICTE',b:'edu',u:'https://internship.aicte-india.org'},
+    {t:'PM Kaushal Vikas Yojana 4.0: Free AI, Coding, Finance training for graduates',s:'Skill India',b:'edu',u:'https://skillindia.gov.in'}
+  ]
+};
+
+async function loadNews(type) {
+  document.querySelectorAll('[id^="nb-"]').forEach(b => b.style.background = 'transparent');
+  const nb = document.getElementById('nb-' + type);
+  if (nb) nb.style.background = 'rgba(0,229,255,.12)';
+  const el = document.getElementById('newsFeed');
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading ${NLBL[type]} news...</div>`;
+  try {
+    const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(NEWS_FEEDS[type])}&count=8`);
+    const data = await r.json();
+    if (data.status === 'ok' && data.items && data.items.length > 0) {
+      const bclass = {jobs:'jobs',tech:'tech',startup:'biz',govt:'edu',edu:'edu'}[type] || 'jobs';
+      el.innerHTML = data.items.slice(0, 7).map(item => {
+        const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'}) : 'Today';
+        const title = (item.title || '').replace(/<[^>]+>/g, '').substring(0, 110);
+        const src = (item.author || data.feed?.title || 'News Source').substring(0, 24);
+        return `<div class="nitem" onclick="window.open('${item.link || '#'}','_blank')">
+          <div class="ntitle">${title}</div>
+          <div class="nmeta"><span class="nsrc">${src}</span><span>${date}</span><span class="nbadg ${bclass}">${NLBL[type]}</span></div>
+        </div>`;
+      }).join('');
+    } else { renderFallbackNews(type); }
+  } catch(e) { renderFallbackNews(type); }
+}
+
+function renderFallbackNews(type) {
+  const items = STATIC_NEWS[type] || STATIC_NEWS.jobs;
+  const el = document.getElementById('newsFeed');
+  el.innerHTML = `<div style="font-size:.63rem;color:var(--mut);margin-bottom:9px;font-family:var(--mn)">
+    &#128204; CURATED UPDATES &bull; ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
+  </div>` + items.map(n => `
+    <div class="nitem" onclick="window.open('${n.u}','_blank')">
+      <div class="ntitle">${n.t}</div>
+      <div class="nmeta"><span class="nsrc">${n.s}</span><span class="nbadg ${n.b}">${NLBL[type]}</span><span style="font-size:.6rem">&#8599; Read</span></div>
+    </div>`).join('');
+}
+
+// ============================================================
+// HIRING CHART (API-FREE, SVG bar chart)
+// ============================================================
+function renderHiringChart() {
+  const data = [
+    {s:'IT & Software',v:38,c:'var(--ac)'},
+    {s:'BFSI',v:22,c:'var(--gold)'},
+    {s:'E-Commerce',v:18,c:'var(--ac2)'},
+    {s:'Manufacturing',v:14,c:'var(--grn)'},
+    {s:'Healthcare',v:12,c:'var(--ac3)'},
+    {s:'EdTech',v:10,c:'#ff9f43'},
+    {s:'Govt / PSU',v:9,c:'#a29bfe'},
+    {s:'FMCG',v:8,c:'#fd79a8'}
+  ];
+  const mx = Math.max(...data.map(d => d.v));
+  document.getElementById('hiringChart').innerHTML =
+    `<div style="font-size:.66rem;color:var(--mut);margin-bottom:9px">Relative hiring volume index for freshers, India 2025</div>` +
+    data.map(d => `
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px">
+        <div style="width:95px;font-size:.7rem;text-align:right;flex-shrink:0;color:var(--txt)">${d.s}</div>
+        <div style="flex:1;height:18px;background:var(--sur2);border-radius:4px;overflow:hidden">
+          <div style="width:${d.v/mx*100}%;height:100%;background:${d.c};border-radius:4px;display:flex;align-items:center;padding-left:6px;transition:width .8s">
+            <span style="font-family:var(--mn);font-size:.58rem;color:#000;font-weight:700">${d.v}</span>
+          </div>
+        </div>
+      </div>`).join('') +
+    `<div style="font-size:.6rem;color:var(--mut);margin-top:6px;font-family:var(--mn)">Source: Naukri, LinkedIn, NASSCOM composite index</div>`;
+}
+
+// ============================================================
+// AI CHAT
+// ============================================================
+async function sendQ() {
+  const inp = document.getElementById('cinput');
+  const q = inp.value.trim();
+  if (!q) return;
+  if (!sd) { toast('Please select your degree first!'); return; }
+  if (!getKey()) { openModal(); return; }
+  const btn = document.getElementById('sbtn');
+  btn.disabled = true;
+  const ar = document.getElementById('respArea');
+  ar.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Analyzing for <strong>${sd}${ss ? ' · ' + ss : ''}</strong>...</div>`;
+  const today = new Date().toLocaleDateString('en-IN', {year:'numeric', month:'long'});
+  const p = `You are CareerLaunch India — expert AI career counselor for Indian graduates. Today: ${today}.
+Student: ${sd}${ss ? ' · ' + ss : ''} fresher, India.
+Question: ${q}
+
+Answer with these sections:
+## FIRST LINE OPPORTUNITIES (Apply Now — 0-6 months)
+5 specific fresher roles | Where to apply | Salary LPA | Key skills needed
+
+## SECOND LINE OPPORTUNITIES (6-24 months)
+4 growth roles | Why better | Salary uplift | What to build now
+
+## IN-DEMAND SKILLS RIGHT NOW
+6 skills — mark HOT or UPCOMING
+
+## ACTION PLAN THIS WEEK
+5 concrete steps to take in next 7 days
+
+## MISTAKES TO AVOID
+Top 3 mistakes freshers from this stream make
+
+India-specific. Real platforms, real companies, real certifications.`;
+  try {
+    const res = await ai(p, 1500);
+    ar.innerHTML = `
+      <div class="card" style="animation:fadeUp .3s ease both">
+        <div class="chdr"><div class="cico ins">&#127919;</div>
+          <div><div class="ctitle">Career Guidance &mdash; ${sd}${ss ? ' · ' + ss : ''}</div>
+          <div class="csub">${new Date().toLocaleString('en-IN')} &middot; ${q.substring(0,45)}${q.length>45?'...':''}</div></div>
+        </div>
+        <div class="air">${md2h(res)}</div>
+      </div>`;
+    ar.scrollIntoView({behavior:'smooth', block:'start'});
+    const h = JSON.parse(localStorage.getItem('cl_h') || '[]');
+    h.unshift({q, sd, ss, t: new Date().toISOString()});
+    if (h.length > 20) h.pop();
+    localStorage.setItem('cl_h', JSON.stringify(h));
+    inp.value = '';
+  } catch(e) {
+    ar.innerHTML = `<div class="card" style="border-color:var(--ac3)"><p style="color:var(--ac3);font-size:.8rem">&#9888;&#65039; ${e.message}</p></div>`;
+  }
+  btn.disabled = false;
+}
+
+function qa(q) { document.getElementById('cinput').value = q; sendQ(); }
+
+// ============================================================
+// API KEY MANAGEMENT + IFRAME DETECTION
+// ============================================================
+const isIframe = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
+
+function getKey() { return localStorage.getItem('cl_apikey') || ''; }
+
+function openModal() {
+  document.getElementById('modalBg').classList.add('show');
+  document.getElementById('iframeWarn').style.display = isIframe ? 'block' : 'none';
+  const k = getKey();
+  if (k) document.getElementById('apiKeyInput').value = k;
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalBg')) {
+    document.getElementById('modalBg').classList.remove('show');
+  }
+}
+
+function saveKey() {
+  const v = document.getElementById('apiKeyInput').value.trim();
+  if (!v) { toast('Please enter your API key'); return; }
+  if (!v.startsWith('sk-ant-')) { toast('Invalid key — must start with sk-ant-'); return; }
+  localStorage.setItem('cl_apikey', v);
+  updateKeyBtn();
+  document.getElementById('modalBg').classList.remove('show');
+  toast('&#9989; API Key saved! AI features unlocked.');
+}
+
+function clearKey() {
+  localStorage.removeItem('cl_apikey');
+  document.getElementById('apiKeyInput').value = '';
+  updateKeyBtn();
+}
+
+function updateKeyBtn() {
+  const btn = document.getElementById('keyBtn');
+  const key = getKey();
+  if (key) {
+    btn.textContent = '✅ Key Set';
+    btn.className = 'key-btn ok';
+  } else {
+    btn.textContent = '🔑 API Key';
+    btn.className = 'key-btn';
+  }
+}
+updateKeyBtn();
+
+async function ai(prompt, max = 900) {
+  const key = getKey();
+  if (!key) {
+    openModal();
+    throw new Error('Enter your Anthropic API key first (tap 🔑 API Key in header).');
+  }
+  if (isIframe) {
+    throw new Error('AI blocked in preview iframe. Download the file and open directly in Chrome/Safari, or deploy to GitHub Pages.');
+  }
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'anthropic-dangerous-direct-browser-access': 'true',
+      'x-api-key': key
+    },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: max,
+      system: 'You are CareerLaunch India, expert AI career counselor for Indian graduates. When asked for JSON respond ONLY with valid JSON, no markdown. Otherwise use markdown headers.',
+      messages: [{role:'user', content:prompt}]
+    })
+  });
+  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error?.message || `API error ${r.status}`); }
+  const data = await r.json();
+  return data.content?.[0]?.text || '';
+}
+
+function md2h(md) {
+  return md
+    .replace(/^## (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^### (.+)$/gm, '<h4>$1</h4>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^[-•] (.+)$/gm, '<li>$1</li>')
+    .replace(/^\d+\. (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>[\s\S]*?<\/li>)+/g, m => `<ul>${m}</ul>`)
+    .replace(/\n\n/g, '<br>')
+    .replace(/\bHOT\b/g, '<span class="stag hot">HOT</span>')
+    .replace(/\bUPCOMING\b/g, '<span class="stag new">UPCOMING</span>');
+}
+
+async function sendSal() {
+  const inp = document.getElementById('salinput');
+  const q = inp.value.trim(); if (!q) return;
+  if (!getKey()) { openModal(); return; }
+  const el = document.getElementById('salResp');
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Fetching salary data...</div>`;
+  try {
+    const t = await ai(`India salary expert. Answer specifically and concisely: ${q}. Include city-tier breakdown if relevant. Use markdown.`, 400);
+    el.innerHTML = `<div class="air">${md2h(t)}</div>`;
+  } catch(e) { el.innerHTML = `<p style="color:var(--ac3);font-size:.76rem">${e.message}</p>`; }
+}
+
+// ============================================================
+// TABS
+// ============================================================
+function switchTab(t, el) {
+  document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  document.getElementById('tab-' + t).classList.add('active');
+  el.classList.add('active');
+  if (t === 'trends') { loadNews('jobs'); setTimeout(renderHiringChart, 400); }
+  if (t === 'streams' && sd) showStream(sd);
+}
+
+function goTab(t) {
+  const navs = document.querySelectorAll('.ni');
+  const map = {guide:0, trends:1, streams:2, roadmap:3, skills:4, companies:4};
+  if (map[t] !== undefined) switchTab(t, navs[map[t]]);
+}
+
+function toast(m) {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:fixed;bottom:76px;left:50%;transform:translateX(-50%);background:var(--ac3);color:#fff;padding:8px 16px;border-radius:7px;font-size:.76rem;font-weight:600;z-index:999;animation:fadeUp .3s ease both;white-space:nowrap';
+  t.textContent = m; document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2300);
+}
+
+document.getElementById('cinput').addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendQ(); }
+});
+
+// PWA
+const SW = `self.addEventListener('install',e=>{self.skipWaiting()});self.addEventListener('activate',e=>{e.waitUntil(clients.claim())});self.addEventListener('fetch',e=>{if(e.request.url.includes('anthropic.com'))return;e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));});`;
+if ('serviceWorker' in navigator) navigator.serviceWorker.register(URL.createObjectURL(new Blob([SW], {type:'application/javascript'}))).catch(() => {});
+function genIco() { const c = document.createElement('canvas'); c.width = c.height = 192; const ctx = c.getContext('2d'); const g = ctx.createLinearGradient(0,0,192,192); g.addColorStop(0,'#00e5ff'); g.addColorStop(1,'#7b61ff'); ctx.fillStyle='#060b18'; ctx.fillRect(0,0,192,192); ctx.fillStyle=g; ctx.font='bold 96px serif'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('\uD83D\uDE80',96,96); return c.toDataURL(); }
+const ml = document.createElement('link'); ml.rel='manifest';
+ml.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({name:'CareerLaunch India',short_name:'CareerLaunch',start_url:'.',display:'standalone',background_color:'#060b18',theme_color:'#00e5ff',icons:[{src:genIco(),sizes:'192x192',type:'image/png'}]}));
+document.head.appendChild(ml);
+
+// Auto-load trends on startup
+loadNews('jobs');
+</script>
+</body>
+</html>
