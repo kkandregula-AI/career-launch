@@ -14,7 +14,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
 /* HEADER */
 header{position:sticky;top:0;z-index:100;background:rgba(6,11,24,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:0 14px;display:flex;align-items:center;justify-content:space-between;height:54px}
-.logo{font-family:var(--mn);font-size:.88rem;color:var(--ac);letter-spacing:2px;text-transform:uppercase}.logo span{color:var(--ac2)}
+.logo{font-family:var(--mn);font-size:.78rem;color:var(--ac);letter-spacing:1px;text-transform:uppercase}.logo span{color:var(--ac2)}
 .hdr-r{display:flex;align-items:center;gap:9px}
 .hdr-prof{font-family:var(--mn);font-size:.56rem;color:var(--gold);background:rgba(255,209,102,.1);border:1px solid rgba(255,209,102,.25);padding:3px 8px;border-radius:20px;display:none;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .hdr-live{font-family:var(--mn);font-size:.56rem;color:var(--grn);display:flex;align-items:center;gap:4px}
@@ -191,7 +191,7 @@ nav.botnav{position:fixed;bottom:0;left:0;right:0;background:rgba(6,11,24,.96);b
 </head>
 <body>
 <header>
-  <div class="logo">Career<span>Launch</span>.in</div>
+  <div class="logo">Career<span>Launch</span> India</div>
   <div class="hdr-r">
     <div class="hdr-prof" id="hdrProf"></div>
     <button class="key-btn" id="keyBtn" onclick="openModal()">&#128273; API Key</button>
@@ -199,24 +199,56 @@ nav.botnav{position:fixed;bottom:0;left:0;right:0;background:rgba(6,11,24,.96);b
   </div>
 </header>
 
-<!-- API KEY MODAL -->
+<!-- SETTINGS MODAL -->
 <div class="modal-bg" id="modalBg" onclick="closeModal(event)">
   <div class="modal">
-    <h3>&#128273; Anthropic API Key</h3>
-    <div class="modal-sub">Required for AI features (Guide, Roadmap, Skills, Companies).<br>Trends &amp; Streams tabs are <strong style="color:var(--grn)">100% free — no key needed.</strong></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+      <h3>&#9881;&#65039; Settings &amp; API Keys</h3>
+      <button onclick="closeModal()" style="background:none;border:none;color:var(--mut);font-size:1.2rem;cursor:pointer">&#10005;</button>
+    </div>
     <div class="iframe-warn" id="iframeWarn">
-      <p>&#9888;&#65039; <strong>Running inside a preview iframe.</strong><br>
-      AI API calls are blocked here. To use AI features, <strong>download the file</strong> and open it directly in your browser (Chrome/Safari), or deploy to GitHub Pages / Vercel.</p>
+      <p>&#9888;&#65039; <strong>Preview iframe detected.</strong> AI calls are blocked here. Download the file and open directly in Chrome/Safari or deploy to GitHub Pages/Vercel for full functionality.</p>
     </div>
     <div class="api-free-note">
-      <p>&#9989; <strong>Free right now:</strong> Trends tab (live news, job portals, Google Trends) and Streams tab (8 stream career guides) work without any key.</p>
+      <p>&#9989; <strong>No key needed:</strong> Trends tab, Streams tab, GitHub Trending, HackerNews Jobs, Wikipedia stream data — all work without any API key.</p>
     </div>
-    <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-xxxx...  (from console.anthropic.com)" />
-    <div class="modal-btns">
-      <button class="mbtn save" onclick="saveKey()">&#128274; Save Key</button>
-      <button class="mbtn cancel" onclick="closeModal()">Cancel</button>
+
+    <div style="display:flex;flex-direction:column;gap:10px;max-height:55vh;overflow-y:auto;padding-right:4px">
+
+      <!-- Anthropic -->
+      <div style="background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:11px">
+        <div style="font-size:.74rem;font-weight:700;color:var(--gold);margin-bottom:2px">&#128273; Anthropic API Key <span style="color:var(--ac3);font-size:.62rem">Required for AI tabs</span></div>
+        <div style="font-size:.65rem;color:var(--mut);margin-bottom:7px">Get free at <strong style="color:var(--ac)">console.anthropic.com</strong> → API Keys</div>
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:var(--mn);font-size:.68rem;outline:none;margin-bottom:7px">
+        <button onclick="saveAnthropicKey()" style="background:linear-gradient(135deg,var(--gold),#f5a623);border:none;border-radius:6px;padding:7px 16px;color:#000;font-size:.72rem;font-weight:700;cursor:pointer;width:100%">Save Anthropic Key</button>
+      </div>
+
+      <!-- NewsAPI -->
+      <div style="background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:11px">
+        <div style="font-size:.74rem;font-weight:700;color:var(--ac);margin-bottom:2px">&#128240; NewsAPI Key <span style="color:var(--grn);font-size:.62rem">100 req/day free</span></div>
+        <div style="font-size:.65rem;color:var(--mut);margin-bottom:7px">Get free at <strong style="color:var(--ac)">newsapi.org</strong> → Get API Key</div>
+        <input type="password" id="newsApiKey" placeholder="xxxxxxxxxxxxxxxxxxxxxxxx" style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:var(--mn);font-size:.68rem;outline:none;margin-bottom:7px">
+        <button onclick="saveNewsKey()" style="background:rgba(0,229,255,.15);border:1px solid var(--ac);border-radius:6px;padding:7px 16px;color:var(--ac);font-size:.72rem;font-weight:700;cursor:pointer;width:100%">Save NewsAPI Key</button>
+      </div>
+
+      <!-- Adzuna -->
+      <div style="background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:11px">
+        <div style="font-size:.74rem;font-weight:700;color:var(--ac2);margin-bottom:2px">&#128202; Adzuna API <span style="color:var(--grn);font-size:.62rem">Real job counts free</span></div>
+        <div style="font-size:.65rem;color:var(--mut);margin-bottom:7px">Get free at <strong style="color:var(--ac)">developer.adzuna.com</strong> → Register</div>
+        <input type="text" id="adzunaAppId" placeholder="App ID (e.g. a1b2c3d4)" style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:var(--mn);font-size:.68rem;outline:none;margin-bottom:6px">
+        <input type="password" id="adzunaAppKey" placeholder="App Key (32 chars)" style="width:100%;background:var(--bg);border:1px solid var(--bdr);border-radius:6px;padding:8px 10px;color:var(--txt);font-family:var(--mn);font-size:.68rem;outline:none;margin-bottom:7px">
+        <button onclick="saveAdzunaKeys()" style="background:rgba(123,97,255,.15);border:1px solid var(--ac2);border-radius:6px;padding:7px 16px;color:var(--ac2);font-size:.72rem;font-weight:700;cursor:pointer;width:100%">Save Adzuna Keys</button>
+      </div>
+
+      <!-- Status -->
+      <div id="keyStatusBox" style="background:var(--sur2);border:1px solid var(--bdr);border-radius:9px;padding:11px">
+        <div style="font-size:.72rem;font-weight:700;color:var(--txt);margin-bottom:8px">&#128203; Key Status</div>
+        <div id="keyStatusList"></div>
+      </div>
     </div>
-    <div style="margin-top:10px;font-size:.65rem;color:var(--mut)">Key is stored only in your browser localStorage. Never sent anywhere except Anthropic.</div>
+
+    <button onclick="closeModal()" style="margin-top:12px;width:100%;padding:10px;background:var(--sur2);border:1px solid var(--bdr);border-radius:8px;color:var(--mut);font-size:.78rem;font-weight:600;cursor:pointer;font-family:var(--bd)">Close</button>
+    <div style="margin-top:8px;font-size:.62rem;color:var(--mut);text-align:center">Keys stored only in your browser. Never shared with anyone except respective APIs.</div>
   </div>
 </div>
 <div class="container">
@@ -344,7 +376,16 @@ nav.botnav{position:fixed;bottom:0;left:0;right:0;background:rgba(6,11,24,.96);b
       <a href="https://trends.google.com/trends/explore?geo=IN&q=MBA+jobs+india+salary" target="_blank" class="jlnk" style="flex:none;text-decoration:none">&#127970; MBA Jobs</a>
     </div>
   </div>
-  <div class="slbl" style="margin-top:6px">&#128202; India Hiring Activity by Sector &mdash; 2025</div>
+  <div class="slbl" style="margin-top:6px">&#128202; Live India Job Market Data (Adzuna)</div>
+  <div class="card"><div id="adzunaStats"><div style="font-size:.74rem;color:var(--mut);padding:6px;text-align:center">Add Adzuna API keys in <button onclick="openModal()" style="background:none;border:none;color:var(--ac);cursor:pointer;font-size:.74rem;text-decoration:underline">&#9881;&#65039; Settings</button> for live India job counts.</div></div></div>
+
+  <div class="slbl" style="margin-top:6px">&#128293; GitHub Trending &mdash; Hottest Tech Right Now</div>
+  <div id="ghTrending"><div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading...</div></div>
+
+  <div class="slbl" style="margin-top:10px">&#127919; HackerNews &mdash; Who's Hiring in Tech</div>
+  <div id="hnJobs"><div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading...</div></div>
+
+  <div class="slbl" style="margin-top:6px">&#128202; India Hiring Activity by Sector 2025</div>
   <div class="card"><div id="hiringChart"></div></div>
 </div>
 
@@ -746,7 +787,6 @@ const SD_DATA = {
 function showStream(deg) {
   const d = SD_DATA[deg];
   if (!d) { document.getElementById('streamDetail').innerHTML = `<div class="empty"><p>Stream data coming soon for ${deg}.</p></div>`; return; }
-  document.getElementById('streamDetail').innerHTML = `
     <div style="animation:fadeUp .4s ease both">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
         <span style="font-size:1.8rem">${d.icon}</span>
@@ -754,6 +794,7 @@ function showStream(deg) {
       </div>
       <div class="sstat-grid">${d.stats.map(s => `<div class="sstat"><div class="sstat-v" style="color:${d.color}">${s.v}</div><div class="sstat-l">${s.l}</div></div>`).join('')}</div>
       <div class="card" style="margin-bottom:9px"><p style="font-size:.78rem;line-height:1.65;color:var(--mut)">${d.about}</p></div>
+      <div id="wikiSnippet" style="margin-bottom:9px"></div>
       <div class="slbl">&#128640; First Line Jobs &mdash; Apply Now (0-6 Months)</div>
       <div style="margin-bottom:11px">${d.first.map(j => `<span class="stag" style="border-color:${d.color};color:${d.color}">${j}</span>`).join('')}</div>
       <div class="slbl">&#11088; Second Line Jobs &mdash; After 2 Years Experience</div>
@@ -796,18 +837,14 @@ function showStream(deg) {
         </div>
       </div>
     </div>`;
+  // Enrich with live Wikipedia summary
+  setTimeout(() => enrichStreamWithWiki(deg), 200);
 }
 
 // ============================================================
-// LIVE NEWS (RSS2JSON free API + curated fallback)
 // ============================================================
-const NEWS_FEEDS = {
-  jobs:    'https://timesofindia.indiatimes.com/rssfeedstopstories.cms',
-  tech:    'https://feeds.feedburner.com/ndtvnews-tech',
-  startup: 'https://yourstory.com/feed',
-  govt:    'https://www.thehindu.com/jobs/feeder/default.rss',
-  edu:     'https://www.thehindu.com/education/feeder/default.rss'
-};
+// NEWS — Dynamic Multi-Source (NewsAPI + RSS2JSON + HackerNews + fallback)
+// ============================================================
 const NLBL = { jobs:'&#128188; Jobs', tech:'&#128187; Tech', startup:'&#128640; Startups', govt:'&#127970; Govt', edu:'&#127891; Education' };
 const STATIC_NEWS = {
   jobs:[
@@ -823,15 +860,15 @@ const STATIC_NEWS = {
   tech:[
     {t:'Generative AI roles in India grew 400% — companies urgently hiring Prompt Engineers',s:'Analytics India Mag',b:'tech',u:'https://analyticsindiamag.com'},
     {t:'Python tops most-demanded programming language for 5th consecutive year in India',s:'HackerEarth',b:'tech',u:'https://hackerearth.com'},
-    {t:'Full Stack developers with React + Node.js command &#8377;8-15L as freshers in 2025',s:'Naukri Trends',b:'tech',u:'https://naukri.com'},
+    {t:'Full Stack developers with React + Node.js command Rs8-15L as freshers in 2025',s:'Naukri Trends',b:'tech',u:'https://naukri.com'},
     {t:'72% of IT job postings now require cloud certification — AWS leads followed by Azure',s:'Coursera India',b:'tech',u:'https://coursera.org'},
     {t:'Cybersecurity talent shortage: 5 lakh unfilled positions in India expected by 2025 end',s:'DSCI India',b:'tech',u:'https://dsci.in'},
-    {t:'DevOps engineers among top 10 highest-paid fresher roles — &#8377;7-14L median CTC',s:'AmbitionBox',b:'tech',u:'https://ambitionbox.com'}
+    {t:'DevOps engineers among top 10 highest-paid fresher roles — Rs7-14L median CTC',s:'AmbitionBox',b:'tech',u:'https://ambitionbox.com'}
   ],
   startup:[
     {t:'Indian startup ecosystem raises $12B in 2025 — fintech and healthtech lead hiring',s:'Inc42',b:'biz',u:'https://inc42.com'},
     {t:'Bangalore, Hyderabad, Pune lead startup hiring with 200+ unicorns now in India',s:'Startup India',b:'biz',u:'https://startupindia.gov.in'},
-    {t:'Freshers in B2B SaaS startups earn &#8377;6-10L — bypassing traditional mass recruiters',s:'SaaSBoomi',b:'biz',u:'https://yourstory.com'},
+    {t:'Freshers in B2B SaaS startups earn Rs6-10L — bypassing traditional mass recruiters',s:'SaaSBoomi',b:'biz',u:'https://yourstory.com'},
     {t:'Zepto, Swiggy, Zomato, Ola hiring 5,000+ tech and operations roles in 2025',s:'YourStory',b:'biz',u:'https://yourstory.com/jobs'},
     {t:'Unacademy, PhysicsWallah, Vedantu hiring 3,000+ educators and tech staff in 2025',s:'Inc42',b:'biz',u:'https://inc42.com'}
   ],
@@ -851,6 +888,20 @@ const STATIC_NEWS = {
     {t:'PM Kaushal Vikas Yojana 4.0: Free AI, Coding, Finance training for graduates',s:'Skill India',b:'edu',u:'https://skillindia.gov.in'}
   ]
 };
+const NEWS_QUERIES = {
+  jobs:    'india jobs hiring freshers 2025',
+  tech:    'india tech hiring AI software developer 2025',
+  startup: 'india startup hiring funding 2025',
+  govt:    'india government jobs UPSC SSC IBPS 2025',
+  edu:     'india education careers skills training 2025'
+};
+const RSS_FEEDS = {
+  jobs:    'https://timesofindia.indiatimes.com/rssfeedstopstories.cms',
+  tech:    'https://feeds.feedburner.com/ndtvnews-tech',
+  startup: 'https://yourstory.com/feed',
+  govt:    'https://www.thehindu.com/jobs/feeder/default.rss',
+  edu:     'https://www.thehindu.com/education/feeder/default.rss'
+};
 
 async function loadNews(type) {
   document.querySelectorAll('[id^="nb-"]').forEach(b => b.style.background = 'transparent');
@@ -858,34 +909,210 @@ async function loadNews(type) {
   if (nb) nb.style.background = 'rgba(0,229,255,.12)';
   const el = document.getElementById('newsFeed');
   el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading ${NLBL[type]} news...</div>`;
-  try {
-    const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(NEWS_FEEDS[type])}&count=8`);
-    const data = await r.json();
-    if (data.status === 'ok' && data.items && data.items.length > 0) {
-      const bclass = {jobs:'jobs',tech:'tech',startup:'biz',govt:'edu',edu:'edu'}[type] || 'jobs';
-      el.innerHTML = data.items.slice(0, 7).map(item => {
-        const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-IN', {day:'2-digit', month:'short'}) : 'Today';
-        const title = (item.title || '').replace(/<[^>]+>/g, '').substring(0, 110);
-        const src = (item.author || data.feed?.title || 'News Source').substring(0, 24);
-        return `<div class="nitem" onclick="window.open('${item.link || '#'}','_blank')">
-          <div class="ntitle">${title}</div>
-          <div class="nmeta"><span class="nsrc">${src}</span><span>${date}</span><span class="nbadg ${bclass}">${NLBL[type]}</span></div>
-        </div>`;
-      }).join('');
-    } else { renderFallbackNews(type); }
-  } catch(e) { renderFallbackNews(type); }
+
+  // Try sources in priority order
+  const newsKey = KEYS.newsapi();
+  if (newsKey) {
+    const ok = await tryNewsAPI(type, newsKey, el);
+    if (ok) return;
+  }
+  // Fallback: RSS2JSON (free, no key)
+  const rssOk = await tryRSS(type, el);
+  if (rssOk) return;
+  // Final fallback: curated static
+  renderFallbackNews(type, el);
 }
 
-function renderFallbackNews(type) {
+async function tryNewsAPI(type, key, el) {
+  try {
+    const q = encodeURIComponent(NEWS_QUERIES[type]);
+    const url = `https://newsapi.org/v2/everything?q=${q}&language=en&sortBy=publishedAt&pageSize=8&apiKey=${key}`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if (data.status === 'ok' && data.articles?.length) {
+      const bclass = {jobs:'jobs',tech:'tech',startup:'biz',govt:'edu',edu:'edu'}[type]||'jobs';
+      el.innerHTML = `<div style="font-size:.6rem;color:var(--grn);margin-bottom:8px;font-family:var(--mn)">&#127757; LIVE via NewsAPI &bull; ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div>` +
+        data.articles.slice(0,8).map(a => {
+          const date = new Date(a.publishedAt).toLocaleDateString('en-IN',{day:'2-digit',month:'short'});
+          return `<div class="nitem" onclick="window.open('${a.url}','_blank')">
+            <div class="ntitle">${(a.title||'').replace(/ - .+$/,'').substring(0,105)}</div>
+            <div class="nmeta"><span class="nsrc">${(a.source?.name||'News').substring(0,22)}</span><span>${date}</span><span class="nbadg ${bclass}">${NLBL[type]}</span></div>
+          </div>`;
+        }).join('');
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+async function tryRSS(type, el) {
+  try {
+    const r = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_FEEDS[type])}&count=8`);
+    const data = await r.json();
+    if (data.status === 'ok' && data.items?.length) {
+      const bclass = {jobs:'jobs',tech:'tech',startup:'biz',govt:'edu',edu:'edu'}[type]||'jobs';
+      el.innerHTML = `<div style="font-size:.6rem;color:var(--ac);margin-bottom:8px;font-family:var(--mn)">&#128240; LIVE via RSS &bull; ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div>` +
+        data.items.slice(0,7).map(item => {
+          const date = item.pubDate ? new Date(item.pubDate).toLocaleDateString('en-IN',{day:'2-digit',month:'short'}) : 'Today';
+          const title = (item.title||'').replace(/<[^>]+>/g,'').substring(0,105);
+          return `<div class="nitem" onclick="window.open('${item.link||'#'}','_blank')">
+            <div class="ntitle">${title}</div>
+            <div class="nmeta"><span class="nsrc">${(item.author||data.feed?.title||'News').substring(0,22)}</span><span>${date}</span><span class="nbadg ${bclass}">${NLBL[type]}</span></div>
+          </div>`;
+        }).join('');
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function renderFallbackNews(type, el) {
+  if (!el) el = document.getElementById('newsFeed');
   const items = STATIC_NEWS[type] || STATIC_NEWS.jobs;
-  const el = document.getElementById('newsFeed');
-  el.innerHTML = `<div style="font-size:.63rem;color:var(--mut);margin-bottom:9px;font-family:var(--mn)">
-    &#128204; CURATED UPDATES &bull; ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}
-  </div>` + items.map(n => `
-    <div class="nitem" onclick="window.open('${n.u}','_blank')">
-      <div class="ntitle">${n.t}</div>
-      <div class="nmeta"><span class="nsrc">${n.s}</span><span class="nbadg ${n.b}">${NLBL[type]}</span><span style="font-size:.6rem">&#8599; Read</span></div>
-    </div>`).join('');
+  el.innerHTML = `<div style="font-size:.6rem;color:var(--mut);margin-bottom:8px;font-family:var(--mn)">&#128204; CURATED &bull; Add NewsAPI key for live news &bull; ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}</div>` +
+    items.map(n => `
+      <div class="nitem" onclick="window.open('${n.u}','_blank')">
+        <div class="ntitle">${n.t}</div>
+        <div class="nmeta"><span class="nsrc">${n.s}</span><span class="nbadg ${n.b}">${NLBL[type]}</span><span style="font-size:.6rem">&#8599; Read</span></div>
+      </div>`).join('');
+}
+
+// ============================================================
+// GITHUB TRENDING — Live hot skills (no key needed)
+// ============================================================
+async function loadGitHubTrending() {
+  const el = document.getElementById('ghTrending');
+  if (!el) return;
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading GitHub trending...</div>`;
+  try {
+    // GitHub trending RSS via rss2json (free)
+    const r = await fetch('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent('https://github.com/trending') + '&count=10');
+    const data = await r.json();
+    if (data.status === 'ok' && data.items?.length) {
+      el.innerHTML = `<div style="font-size:.6rem;color:var(--grn);margin-bottom:8px;font-family:var(--mn)">&#128293; LIVE from GitHub &bull; ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div>` +
+        data.items.slice(0,8).map(item => `
+          <div class="nitem" onclick="window.open('${item.link||'https://github.com/trending'}','_blank')">
+            <div class="ntitle">${(item.title||'').substring(0,90)}</div>
+            <div class="nmeta"><span class="nsrc" style="color:var(--ac3)">GitHub Trending</span><span class="nbadg tech">HOT SKILL</span></div>
+          </div>`).join('');
+    } else { renderGitHubFallback(el); }
+  } catch(e) { renderGitHubFallback(el); }
+}
+
+function renderGitHubFallback(el) {
+  const langs = ['Python','TypeScript','Rust','Go','LLM / AI Apps','React','Next.js','Kubernetes','Terraform','Flutter','Svelte','Bun'];
+  el.innerHTML = `<div style="font-size:.6rem;color:var(--mut);margin-bottom:8px;font-family:var(--mn)">&#128293; Most-starred GitHub languages &amp; frameworks</div>` +
+    `<div style="display:flex;flex-wrap:wrap;gap:6px">${langs.map(l => `<span class="stag hot">${l}</span>`).join('')}</div>`;
+}
+
+// ============================================================
+// HACKERNEWS WHO'S HIRING — Live tech jobs (no key needed)
+// ============================================================
+async function loadHNJobs() {
+  const el = document.getElementById('hnJobs');
+  if (!el) return;
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading HackerNews jobs...</div>`;
+  try {
+    // HN monthly "Who is hiring?" thread — fetch latest items
+    const r = await fetch('https://hacker-news.firebaseio.com/v0/jobstories.json');
+    const ids = await r.json();
+    const topIds = ids.slice(0, 8);
+    const jobs = await Promise.all(topIds.map(id =>
+      fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then(r => r.json())
+    ));
+    el.innerHTML = `<div style="font-size:.6rem;color:var(--grn);margin-bottom:8px;font-family:var(--mn)">&#127919; LIVE from HackerNews &bull; ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div>` +
+      jobs.filter(j => j && j.title).slice(0,7).map(j => `
+        <div class="nitem" onclick="window.open('${j.url||'https://news.ycombinator.com/item?id='+j.id}','_blank')">
+          <div class="ntitle">${(j.title||'').substring(0,100)}</div>
+          <div class="nmeta"><span class="nsrc" style="color:var(--ac2)">HackerNews</span><span>${new Date(j.time*1000).toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}</span><span class="nbadg biz">HIRING</span></div>
+        </div>`).join('');
+  } catch(e) {
+    el.innerHTML = `<div style="font-size:.74rem;color:var(--mut);padding:10px">Visit <a href="https://news.ycombinator.com/jobs" target="_blank" style="color:var(--ac)">news.ycombinator.com/jobs</a> for live tech hiring posts.</div>`;
+  }
+}
+
+// ============================================================
+// ADZUNA — Live India job market stats (needs key)
+// ============================================================
+async function loadAdzunaStats() {
+  const el = document.getElementById('adzunaStats');
+  if (!el) return;
+  const appId = KEYS.adzunaId(), appKey = KEYS.adzunaKey();
+  if (!appId || !appKey) {
+    el.innerHTML = `<div style="font-size:.74rem;color:var(--mut);padding:10px;text-align:center">Add Adzuna API keys in <button onclick="openModal()" style="background:none;border:none;color:var(--ac);cursor:pointer;font-size:.74rem;text-decoration:underline">&#9881;&#65039; Settings</button> for live India job counts &amp; salary data.</div>`;
+    return;
+  }
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading live job market data...</div>`;
+  const categories = [
+    {label:'IT Jobs', cat:'it-jobs'},
+    {label:'Engineering', cat:'engineering-jobs'},
+    {label:'Accounting', cat:'accounting-finance-jobs'},
+    {label:'Sales', cat:'sales-jobs'},
+    {label:'Marketing', cat:'marketing-jobs'},
+    {label:'HR', cat:'hr-jobs'}
+  ];
+  try {
+    const results = await Promise.all(categories.map(c =>
+      fetch(`https://api.adzuna.com/v1/api/jobs/in/search/1?app_id=${appId}&app_key=${appKey}&results_per_page=1&what=${encodeURIComponent(c.label)}&content-type=application/json`)
+        .then(r => r.json())
+        .then(d => ({ label: c.label, count: d.count || 0, avg: d.mean_salary || 0 }))
+        .catch(() => ({ label: c.label, count: 0, avg: 0 }))
+    ));
+    const max = Math.max(...results.map(r => r.count), 1);
+    el.innerHTML = `<div style="font-size:.6rem;color:var(--grn);margin-bottom:10px;font-family:var(--mn)">&#128202; LIVE India Job Counts &bull; Adzuna &bull; ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}</div>` +
+      results.map(r => `
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+          <div style="width:90px;font-size:.7rem;text-align:right;flex-shrink:0">${r.label}</div>
+          <div style="flex:1;height:18px;background:var(--sur2);border-radius:4px;overflow:hidden">
+            <div style="width:${r.count/max*100}%;height:100%;background:var(--ac);border-radius:4px;display:flex;align-items:center;padding-left:6px;min-width:40px">
+              <span style="font-family:var(--mn);font-size:.58rem;color:#000;font-weight:700">${r.count.toLocaleString('en-IN')}</span>
+            </div>
+          </div>
+          ${r.avg ? `<div style="font-family:var(--mn);font-size:.6rem;color:var(--gold);width:60px;text-align:right">&#8377;${Math.round(r.avg/100000)}L avg</div>` : ''}
+        </div>`).join('') +
+      `<div style="font-size:.6rem;color:var(--mut);margin-top:4px;font-family:var(--mn)">Source: Adzuna India live API</div>`;
+  } catch(e) {
+    el.innerHTML = `<div style="font-size:.74rem;color:var(--ac3);padding:8px">Could not load job data: ${e.message}</div>`;
+  }
+}
+
+// ============================================================
+// WIKIPEDIA — Stream data enrichment (no key needed)
+// ============================================================
+const WIKI_PAGES = {
+  'BTech/BE': 'Bachelor_of_Engineering',
+  'MCA':      'Master_of_Computer_Applications',
+  'BCom':     'Bachelor_of_Commerce',
+  'BA':       'Bachelor_of_Arts',
+  'BSc':      'Bachelor_of_Science',
+  'BBA/MBA':  'Master_of_Business_Administration',
+  'BCA':      'Bachelor_of_Computer_Applications',
+  'Diploma':  'Diploma'
+};
+
+async function enrichStreamWithWiki(deg) {
+  const page = WIKI_PAGES[deg];
+  if (!page) return null;
+  const el = document.getElementById('wikiSnippet');
+  if (!el) return;
+  el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Loading Wikipedia summary...</div>`;
+  try {
+    const r = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${page}`);
+    const data = await r.json();
+    if (data.extract) {
+      const sentences = data.extract.split('. ').slice(0, 3).join('. ') + '.';
+      el.innerHTML = `
+        <div style="background:rgba(0,229,255,.04);border:1px solid rgba(0,229,255,.12);border-radius:9px;padding:11px 13px">
+          <div style="display:flex;align-items:center;gap:7px;margin-bottom:7px">
+            <span style="font-size:.9rem">&#127758;</span>
+            <span style="font-family:var(--mn);font-size:.58rem;color:var(--ac);letter-spacing:1px">WIKIPEDIA OVERVIEW</span>
+            <a href="${data.content_urls?.desktop?.page||'#'}" target="_blank" style="font-family:var(--mn);font-size:.56rem;color:var(--mut);margin-left:auto;text-decoration:none">&#8599; Full article</a>
+          </div>
+          <p style="font-size:.76rem;color:var(--mut);line-height:1.65">${sentences}</p>
+          ${data.thumbnail ? `<img src="${data.thumbnail.source}" style="width:100%;max-height:100px;object-fit:cover;border-radius:6px;margin-top:8px;opacity:.7" alt="${deg}">` : ''}
+        </div>`;
+    } else { el.innerHTML = ''; }
+  } catch(e) { el.innerHTML = ''; }
 }
 
 // ============================================================
@@ -925,7 +1152,7 @@ async function sendQ() {
   const q = inp.value.trim();
   if (!q) return;
   if (!sd) { toast('Please select your degree first!'); return; }
-  if (!getKey()) { openModal(); return; }
+  if (!KEYS.anthropic()) { openModal(); return; }
   const btn = document.getElementById('sbtn');
   btn.disabled = true;
   const ar = document.getElementById('respArea');
@@ -977,78 +1204,96 @@ India-specific. Real platforms, real companies, real certifications.`;
 function qa(q) { document.getElementById('cinput').value = q; sendQ(); }
 
 // ============================================================
-// API KEY MANAGEMENT + IFRAME DETECTION
+// API KEY MANAGEMENT — Multi-key system
 // ============================================================
 const isIframe = (() => { try { return window.self !== window.top; } catch(e) { return true; } })();
 
-function getKey() { return localStorage.getItem('cl_apikey') || ''; }
+const KEYS = {
+  anthropic: () => localStorage.getItem('cl_apikey') || '',
+  newsapi:   () => localStorage.getItem('cl_newskey') || '',
+  adzunaId:  () => localStorage.getItem('cl_azid') || '',
+  adzunaKey: () => localStorage.getItem('cl_azkey') || ''
+};
 
 function openModal() {
   document.getElementById('modalBg').classList.add('show');
   document.getElementById('iframeWarn').style.display = isIframe ? 'block' : 'none';
-  const k = getKey();
-  if (k) document.getElementById('apiKeyInput').value = k;
+  const k = KEYS.anthropic(); if (k) document.getElementById('apiKeyInput').value = k;
+  const nk = KEYS.newsapi(); if (nk) document.getElementById('newsApiKey').value = nk;
+  const ai = KEYS.adzunaId(); if (ai) document.getElementById('adzunaAppId').value = ai;
+  const ak = KEYS.adzunaKey(); if (ak) document.getElementById('adzunaAppKey').value = ak;
+  renderKeyStatus();
 }
 
 function closeModal(e) {
-  if (!e || e.target === document.getElementById('modalBg')) {
+  if (!e || e.target === document.getElementById('modalBg'))
     document.getElementById('modalBg').classList.remove('show');
-  }
 }
 
-function saveKey() {
+function saveAnthropicKey() {
   const v = document.getElementById('apiKeyInput').value.trim();
-  if (!v) { toast('Please enter your API key'); return; }
-  if (!v.startsWith('sk-ant-')) { toast('Invalid key — must start with sk-ant-'); return; }
-  localStorage.setItem('cl_apikey', v);
-  updateKeyBtn();
-  document.getElementById('modalBg').classList.remove('show');
-  toast('&#9989; API Key saved! AI features unlocked.');
+  if (!v) { toast('Please enter your Anthropic API key'); return; }
+  if (!v.startsWith('sk-ant-')) { toast('Invalid — must start with sk-ant-'); return; }
+  localStorage.setItem('cl_apikey', v); updateKeyBtn(); renderKeyStatus();
+  toast('&#9989; Anthropic key saved! AI features unlocked.');
 }
 
-function clearKey() {
-  localStorage.removeItem('cl_apikey');
-  document.getElementById('apiKeyInput').value = '';
-  updateKeyBtn();
+function saveNewsKey() {
+  const v = document.getElementById('newsApiKey').value.trim();
+  if (!v) { toast('Please enter your NewsAPI key'); return; }
+  localStorage.setItem('cl_newskey', v); updateKeyBtn(); renderKeyStatus();
+  toast('&#9989; NewsAPI key saved! Live news activated.');
+}
+
+function saveAdzunaKeys() {
+  const id = document.getElementById('adzunaAppId').value.trim();
+  const key = document.getElementById('adzunaAppKey').value.trim();
+  if (!id || !key) { toast('Enter both Adzuna App ID and App Key'); return; }
+  localStorage.setItem('cl_azid', id);
+  localStorage.setItem('cl_azkey', key);
+  updateKeyBtn(); renderKeyStatus();
+  toast('&#9989; Adzuna keys saved! Live job data activated.');
+}
+
+function renderKeyStatus() {
+  const statuses = [
+    { name:'Anthropic (AI features)', set: !!KEYS.anthropic(), color: KEYS.anthropic() ? 'var(--grn)' : 'var(--ac3)' },
+    { name:'NewsAPI (live news)', set: !!KEYS.newsapi(), color: KEYS.newsapi() ? 'var(--grn)' : 'var(--mut)' },
+    { name:'Adzuna (job market data)', set: !!(KEYS.adzunaId()&&KEYS.adzunaKey()), color: (KEYS.adzunaId()&&KEYS.adzunaKey()) ? 'var(--grn)' : 'var(--mut)' },
+    { name:'GitHub Trending (no key)', set: true, color: 'var(--grn)' },
+    { name:'HackerNews Jobs (no key)', set: true, color: 'var(--grn)' },
+    { name:'Wikipedia Stream Data (no key)', set: true, color: 'var(--grn)' }
+  ];
+  document.getElementById('keyStatusList').innerHTML = statuses.map(s =>
+    `<div style="display:flex;align-items:center;gap:7px;padding:3px 0;border-bottom:1px solid var(--bdr)">
+      <span style="color:${s.color};font-size:.75rem">${s.set ? '&#9989;' : '&#9675;'}</span>
+      <span style="font-size:.7rem;color:${s.set ? 'var(--txt)' : 'var(--mut)'}">${s.name}</span>
+    </div>`
+  ).join('');
 }
 
 function updateKeyBtn() {
   const btn = document.getElementById('keyBtn');
-  const key = getKey();
-  if (key) {
-    btn.textContent = '✅ Key Set';
-    btn.className = 'key-btn ok';
-  } else {
-    btn.textContent = '🔑 API Key';
-    btn.className = 'key-btn';
-  }
+  const hasAny = KEYS.anthropic() || KEYS.newsapi() || (KEYS.adzunaId() && KEYS.adzunaKey());
+  const hasAll = KEYS.anthropic() && KEYS.newsapi() && KEYS.adzunaId() && KEYS.adzunaKey();
+  if (hasAll) { btn.textContent = '&#9881;&#65039; All Set'; btn.className = 'key-btn ok'; }
+  else if (hasAny) { btn.textContent = '&#9881;&#65039; Partial'; btn.className = 'key-btn ok'; }
+  else { btn.textContent = '&#128273; API Keys'; btn.className = 'key-btn'; }
 }
 updateKeyBtn();
 
 async function ai(prompt, max = 900) {
-  const key = getKey();
-  if (!key) {
-    openModal();
-    throw new Error('Enter your Anthropic API key first (tap 🔑 API Key in header).');
-  }
-  if (isIframe) {
-    throw new Error('AI blocked in preview iframe. Download the file and open directly in Chrome/Safari, or deploy to GitHub Pages.');
-  }
+  const key = KEYS.anthropic();
+  if (!key) { openModal(); throw new Error('Enter your Anthropic API key first (tap ⚙️ API Keys in header).'); }
+  if (isIframe) throw new Error('AI blocked in preview iframe. Open the file directly in Chrome/Safari.');
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'anthropic-dangerous-direct-browser-access': 'true',
-      'x-api-key': key
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: max,
-      system: 'You are CareerLaunch India, expert AI career counselor for Indian graduates. When asked for JSON respond ONLY with valid JSON, no markdown. Otherwise use markdown headers.',
-      messages: [{role:'user', content:prompt}]
-    })
+    headers: { 'Content-Type':'application/json', 'anthropic-dangerous-direct-browser-access':'true', 'x-api-key': key },
+    body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:max,
+      system:'You are CareerLaunch India, expert AI career counselor for Indian graduates. When asked for JSON respond ONLY with valid JSON, no markdown. Otherwise use markdown headers.',
+      messages:[{role:'user',content:prompt}] })
   });
-  if (!r.ok) { const e = await r.json().catch(() => ({})); throw new Error(e.error?.message || `API error ${r.status}`); }
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.error?.message||`API error ${r.status}`); }
   const data = await r.json();
   return data.content?.[0]?.text || '';
 }
@@ -1070,7 +1315,7 @@ function md2h(md) {
 async function sendSal() {
   const inp = document.getElementById('salinput');
   const q = inp.value.trim(); if (!q) return;
-  if (!getKey()) { openModal(); return; }
+  if (!KEYS.anthropic()) { openModal(); return; }
   const el = document.getElementById('salResp');
   el.innerHTML = `<div class="loading"><div class="dots"><span></span><span></span><span></span></div>Fetching salary data...</div>`;
   try {
@@ -1087,8 +1332,11 @@ function switchTab(t, el) {
   document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
   document.getElementById('tab-' + t).classList.add('active');
   el.classList.add('active');
-  if (t === 'trends') { loadNews('jobs'); setTimeout(renderHiringChart, 400); }
-  if (t === 'streams' && sd) showStream(sd);
+  if (t === 'trends') {
+    loadNews('jobs');
+    setTimeout(() => { loadGitHubTrending(); loadHNJobs(); loadAdzunaStats(); renderHiringChart(); }, 300);
+  }
+  if (t === 'streams' && sd) { showStream(sd); setTimeout(() => enrichStreamWithWiki(sd), 400); }
 }
 
 function goTab(t) {
@@ -1116,8 +1364,9 @@ const ml = document.createElement('link'); ml.rel='manifest';
 ml.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify({name:'CareerLaunch India',short_name:'CareerLaunch',start_url:'.',display:'standalone',background_color:'#060b18',theme_color:'#00e5ff',icons:[{src:genIco(),sizes:'192x192',type:'image/png'}]}));
 document.head.appendChild(ml);
 
-// Auto-load trends on startup
+// Auto-load on startup
 loadNews('jobs');
+setTimeout(() => { loadGitHubTrending(); loadHNJobs(); loadAdzunaStats(); }, 800);
 </script>
 </body>
 </html>
